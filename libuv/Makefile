@@ -8,7 +8,7 @@ PKG_VERSION:=a8c1136de2cabf25b143021488cbaab05834daa8
 PKG_RELEASE:=1.7.5-stable
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/libuv/libuv.git
+PKG_SOURCE_URL:=http://public.inteno.se:/libuv
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)

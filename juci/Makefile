@@ -4,7 +4,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git@public.inteno.se:juci.git
+PKG_SOURCE_URL:=http://public.inteno.se:/juci
 PKG_SOURCE_VERSION:=d59d7cb5f2f28be8b3f009436d672aa7b0c354c1
 PKG_VERSION:=2016-02-16
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
