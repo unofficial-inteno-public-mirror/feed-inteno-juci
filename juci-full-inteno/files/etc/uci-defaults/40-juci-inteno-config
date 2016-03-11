@@ -389,6 +389,11 @@ config menu
 	list acls 'user-support'
 
 config menu
+	option path 'settings/management/buttons'
+	option page 'settings-management-buttons'
+	list acls 'juci-mod-system'
+
+config menu
 	option path 'settings/management/dropbear'
 	option page 'settings-management-dropbear'
 	list acls 'juci-dropbear'
