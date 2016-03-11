@@ -18,6 +18,7 @@ define Package/juci-full-inteno
 	  +juci-broadcom-dsl \
 	  +juci-broadcom-ethernet \
 	  +juci-broadcom-iptv \
+	  +juci-broadcom-pwrmgmt \
 	  +juci-broadcom-vlan \
 	  +juci-broadcom-wl \
 	  +juci-ddns \
