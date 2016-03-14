@@ -21,6 +21,7 @@ define Package/juci-full-inteno
 	  +juci-broadcom-pwrmgmt \
 	  +juci-broadcom-vlan \
 	  +juci-broadcom-wl \
+	  +juci-catv \
 	  +juci-ddns \
 	  +juci-diagnostics \
 	  +juci-dnsmasq-dhcp \
@@ -45,6 +46,7 @@ define Package/juci-full-inteno
 	  +juci-printer \
 	  +juci-samba \
 	  +juci-snmpd \
+	  +juci-sfp \
 	  +juci-sysupgrade \
 	  +juci-theme-inteno \
 	  +juci-ubus-core \
