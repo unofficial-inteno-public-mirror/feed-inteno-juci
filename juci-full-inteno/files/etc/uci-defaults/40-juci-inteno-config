@@ -422,17 +422,6 @@ EOF
 	cat >> /etc/config/juci << EOF
 
 config menu
-	option path 'settings/pwrmgmt'
-	option page 'broadcom-pwrmgmt'
-	list acls 'juci-broadcom-pwrmgmt'
-	list acls 'user-support'
-
-config menu
-	option path 'settings/management/buttons'
-	option page 'settings-management-buttons'
-	list acls 'juci-mod-system'
-
-config menu
 	option path 'settings/management/dropbear'
 	option page 'settings-management-dropbear'
 	list acls 'juci-dropbear'
@@ -448,6 +437,22 @@ config menu
 	option path 'settings/management/services'
 	option page 'internet-firewall-services'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
+
+config menu
+	option path 'settings/hardware'
+	option page 'settings-hardware'
+	option redirect 'settings-hardware-buttons'
+
+config menu
+	option path 'settings/hardware/buttons'
+	option page 'settings-hardware-buttons'
+	list acls 'juci-mod-system'
+
+config menu
+	option path 'settings/pwrmgmt'
+	option page 'broadcom-pwrmgmt'
+	list acls 'juci-broadcom-pwrmgmt'
 	list acls 'user-support'
 
 config menu
@@ -480,17 +485,24 @@ config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
+EOF
+[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
+	cat >> /etc/config/juci << EOF
 
 config menu
 	option path 'status/dsl'
 	option page 'page-broadcom-dsl-status'
 	list acls 'juci-broadcom-dsl'
+EOF
+}
+	cat >> /etc/config/juci << EOF
 
 config menu
 	option path 'status/usb'
 	option page 'status-usb'
 	list acls 'juci-usb'
 EOF
+
 [ "$hasCatv" == "1" ] && install_catv_status #installs catv status page if needed
 [ "$hasSfp" == "1" ] && install_sfp #installs sfp status page if needed
 	cat >> /etc/config/juci << EOF
