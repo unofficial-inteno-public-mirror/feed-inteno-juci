@@ -194,6 +194,17 @@ config menu
 	list acls 'juci-broadcom-vlan'
 	list acls 'user-support'
 
+EOF
+	[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
+	cat >> /etc/config/juci << EOF
+config menu
+	option path 'internet/xdsl'
+	option page 'network-xdsl'
+	list acl 'juci-broadcom-xdsl'
+
+EOF
+}
+	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/network'
 	option page 'internet-network'

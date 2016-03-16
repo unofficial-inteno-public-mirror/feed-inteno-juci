@@ -21,6 +21,7 @@ define Package/juci-full-inteno
 	  +juci-broadcom-pwrmgmt \
 	  +juci-broadcom-vlan \
 	  +juci-broadcom-wl \
+	  +juci-broadcom-xdsl \
 	  +juci-catv \
 	  +juci-ddns \
 	  +juci-diagnostics \
