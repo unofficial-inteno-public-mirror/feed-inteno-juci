@@ -46,6 +46,7 @@ config menu
 	option path 'settings/management/catv'
 	option page 'settings-management-catv'
 	list acls 'juci-catv'
+	list acls 'user-support'
 EOF
 }
 install_voice_pages(){
@@ -72,6 +73,7 @@ config menu
 	option page 'voice-sip-users'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
+	option modes 'expert'
 
 config menu
 	option path 'voice/lines'
@@ -141,7 +143,6 @@ config menu
 	option path 'internet'
 	option page 'network'
 	option redirect 'internet-ethernet'
-	list acls 'user-support'
 
 config menu
 	option path 'internet/ethernet'
@@ -201,6 +202,7 @@ config menu
 	option path 'internet/xdsl'
 	option page 'network-xdsl'
 	list acl 'juci-broadcom-xdsl'
+	list acls 'user-support'
 
 EOF
 }
@@ -221,6 +223,7 @@ config menu
 	option path 'internet/firewall'
 	option page 'internet-firewall'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/firewall/zones'
@@ -238,23 +241,27 @@ config menu
 	option path 'internet/firewall/port_mapping'
 	option page 'internet-firewall-port-mapping'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
 	option modes 'expert'
 
 config menu
 	option path 'internet/firewall/dmz'
 	option page 'internet-firewall-dmz'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
 	option modes 'expert'
 
-config menu 
+config menu
 	option path 'internet/qos'
 	option page 'juci-inteno-qos'
 	list acls 'juci-inteno-qos'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/parental_control'
 	option page 'internet-parental-control'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/multiwan'
@@ -266,12 +273,13 @@ config menu
 	option path 'internet/services'
 	option page 'internet-services'
 	list acls 'juci-network-netifd'
+	list acls 'user-support'
 
-config menu                  
+config menu
 	option path 'internet/services/printer'
 	option page 'internet-services-printer'
-	list acls 'juci-printer'                 
-						                                                 
+	list acls 'juci-printer'
+
 config menu
 	option path 'internet/services/minidlna'
 	option page 'internet-services-minidlna'
@@ -281,16 +289,19 @@ config menu
 	option path 'internet/services/ntp'
 	option page 'internet-services-ntp'
 	list acls 'juci-mod-system'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/services/upnp'
 	option page 'upnpd-settings'
 	list acls 'juci-upnp'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/services/ddns'
 	option page 'internet-services-ddns'
 	list acls 'juci-ddns'
+	list acls 'user-support'
 
 config menu
 	option path 'internet/services/mcpd'
@@ -384,6 +395,7 @@ config menu
 	option path 'settings/password'
 	option page 'settings-password'
 	list acls 'juci-mod-system'
+	list acls 'user-support'
 
 config menu
 	option path 'settings/upgrade'
@@ -394,17 +406,20 @@ config menu
 config menu
 	option path 'settings/upgrade/options'
 	option page 'settings-upgrade-options'
-	option acls 'juci-sysupgrade'
+	list acls 'juci-sysupgrade'
+	list acls 'user-support'
 
 config menu
 	option path 'settings/configuration'
 	option page 'settings-configuration'
 	list acls 'juci-mod-system'
+	list acls 'user-support'
 
 config menu
 	option path 'settings/configuration/settings'
 	option page 'inteno-backup-settings'
 	list acls 'juci-inteno-backup'
+	list acls 'user-support'
 
 config menu
 	option path 'settings/provisioning'
@@ -561,6 +576,7 @@ config menu
 	option path 'status/events'
 	option page 'status-events'
 	option modes 'expert'
+	list acls 'user-support'
 
 config menu
 	option path 'status/restart'
