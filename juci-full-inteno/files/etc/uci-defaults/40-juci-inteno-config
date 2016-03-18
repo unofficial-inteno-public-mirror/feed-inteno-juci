@@ -286,12 +286,6 @@ config menu
 	list acls 'juci-minidlna'
 
 config menu
-	option path 'internet/services/ntp'
-	option page 'internet-services-ntp'
-	list acls 'juci-mod-system'
-	list acls 'user-support'
-
-config menu
 	option path 'internet/services/upnp'
 	option page 'upnpd-settings'
 	list acls 'juci-upnp'
