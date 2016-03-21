@@ -148,7 +148,6 @@ config menu
 	option path 'internet/ethernet'
 	option page 'internet-ethernet'
 	list acls 'juci-network-netifd'
-	list acls 'user-support'
 
 config menu
 	option path 'internet/ethernet/phy'
@@ -273,7 +272,6 @@ config menu
 	option path 'internet/services'
 	option page 'internet-services'
 	list acls 'juci-network-netifd'
-	list acls 'user-support'
 
 config menu
 	option path 'internet/services/printer'
