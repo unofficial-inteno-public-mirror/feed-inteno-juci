@@ -22,7 +22,6 @@ define Package/juci-full-inteno
 	  +juci-broadcom-vlan \
 	  +juci-broadcom-wl \
 	  +juci-broadcom-xdsl \
-	  +juci-catv \
 	  +juci-ddns \
 	  +juci-diagnostics \
 	  +juci-dnsmasq-dhcp \
@@ -36,18 +35,15 @@ define Package/juci-full-inteno
 	  +juci-inteno-multiwan \
 	  +juci-inteno-router \
 	  +juci-inteno-qos \
-	  +juci-inteno-voice-client \
 	  +juci-macdb \
 	  +juci-minidlna \
 	  +juci-mod-status \
 	  +juci-mod-system \
-	  +juci-natalie-dect \
 	  +juci-netmode \
 	  +juci-network-netifd \
 	  +juci-printer \
 	  +juci-samba \
 	  +juci-snmpd \
-	  +juci-sfp \
 	  +juci-sysupgrade \
 	  +juci-theme-inteno \
 	  +juci-ubus-core \
