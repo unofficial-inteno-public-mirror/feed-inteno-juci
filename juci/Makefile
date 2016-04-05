@@ -4,9 +4,9 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=git@iopsys.inteno.se:inteno-juci.git
-PKG_SOURCE_VERSION:=6781c3b0270e32bf295ffc0571cbf72337522b19
-PKG_VERSION:=2016-02-06
+PKG_SOURCE_URL:=http://public.inteno.se:/juci
+PKG_SOURCE_VERSION:=ce4d19251c2a6c4dae2261940349f77a6d632c01
+PKG_VERSION:=2016-04-05
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
@@ -31,7 +31,7 @@ define Package/juci
   CATEGORY:=JUCI
   MENU=1
   TITLE:=JUCI Core Package (select this to select default plugins)
-  DEPENDS:=+lua +libuv-lua +libuci-lua +libubus-lua +ubus-scriptd +libubox-lua +luaposix33 +libubox +libubus +uhttpd +uhttpd-mod-ubus +rpcd 
+  DEPENDS:=+lua +libuv-lua +libuci-lua +libubus-lua +libubox-lua +luaposix33 +libubox +libubus +uhttpd +uhttpd-mod-ubus +rpcd +questd
 endef
 
 define Package/juci/config 
@@ -106,14 +106,18 @@ $(eval $(call RegisterAddon,Plugins,juci-ethernet, JUCI ethernet core module ))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-dsl, Inteno Broadcom DSL Module (xdslctl based),+juci-ethernet))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-ethernet, Inteno Broadcom Ethernet Module,+juci-ethernet))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-iptv, Inteno Broadcom IPTV/MCPD Plugin,+juci-network-netifd +juci-ethernet))
+$(eval $(call RegisterAddon,Plugins,juci-broadcom-pwrmgmt, Inteno Broadcom Power management Plugin))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-vlan, Inteno Broadcom VLAN Module (vlanctl based),+juci-ethernet))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-wl, Inteno Broadcom Wireless Module (wlctl),+juci-ethernet ))
+$(eval $(call RegisterAddon,Plugins,juci-broadcom-xdsl, Inteno Broadcom xDSL Module ))
+$(eval $(call RegisterAddon,Plugins,juci-catv, Inteno CATV Module))
 $(eval $(call RegisterAddon,Plugins,juci-ddns, DDNS configuration through /etc/config/ddns))
 $(eval $(call RegisterAddon,Plugins,juci-diagnostics, Simple Diagnostics ))
 $(eval $(call RegisterAddon,Plugins,juci-dnsmasq-dhcp, DHCP/DNSMasq configuration through /etc/config/dhcp ))
 $(eval $(call RegisterAddon,Plugins,juci-dropbear, Dropbear Configuration,dropbear))
 $(eval $(call RegisterAddon,Plugins,juci-event, JUCI Event Subsystem ))
 $(eval $(call RegisterAddon,Plugins,juci-firewall-fw3, FW3 Firewall Configuration /etc/config/firewall ))
+$(eval $(call RegisterAddon,Plugins,juci-icwmp, Configure TR69 settings /etc/config/icwmp ))
 $(eval $(call RegisterAddon,Plugins,juci-iconnect,JUCI UBUS interconnect private cloud interface))
 $(eval $(call RegisterAddon,Plugins,juci-igmpinfo, IGMP Snooping Info through kernel snooping tables ))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-backup,Inteno Backup Module))
@@ -130,8 +134,10 @@ $(eval $(call RegisterAddon,Plugins,juci-mod-status, Deprecated JUCI Status Repo
 $(eval $(call RegisterAddon,Plugins,juci-mod-system, JUCI System Administration Module))
 $(eval $(call RegisterAddon,Plugins,juci-netmode, Inteno NetMode default reset functionality))
 $(eval $(call RegisterAddon,Plugins,juci-network-netifd, OpenWRT netifd network configuration module))
+$(eval $(call RegisterAddon,Plugins,juci-printer, Inteno printer configuration page))
 $(eval $(call RegisterAddon,Plugins,juci-router-openwrt, OpenWRT Router Interface))
 $(eval $(call RegisterAddon,Plugins,juci-samba, Samba36 Configuration))
+$(eval $(call RegisterAddon,Plugins,juci-sfp, SFP Configuration))
 $(eval $(call RegisterAddon,Plugins,juci-sysupgrade, Inteno Sysupgrade Firmware Upgrade))
 $(eval $(call RegisterAddon,Plugins,juci-upnp, UPNP Configuration Module))
 $(eval $(call RegisterAddon,Plugins,juci-usb, USB Support In GUI))

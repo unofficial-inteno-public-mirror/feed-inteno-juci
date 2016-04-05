@@ -18,8 +18,11 @@ define Package/juci-full-inteno
 	  +juci-broadcom-dsl \
 	  +juci-broadcom-ethernet \
 	  +juci-broadcom-iptv \
+	  +juci-broadcom-pwrmgmt \
 	  +juci-broadcom-vlan \
 	  +juci-broadcom-wl \
+	  +juci-broadcom-xdsl \
+	  +juci-catv \
 	  +juci-ddns \
 	  +juci-diagnostics \
 	  +juci-dnsmasq-dhcp \
@@ -28,6 +31,7 @@ define Package/juci-full-inteno
 	  +juci-event \
 	  +juci-firewall-fw3 \
 	  +juci-simple-gui \
+	  +juci-icwmp \
 	  +juci-iconnect \
 	  +juci-inteno-multiwan \
 	  +juci-inteno-router \
@@ -40,8 +44,10 @@ define Package/juci-full-inteno
 	  +juci-natalie-dect \
 	  +juci-netmode \
 	  +juci-network-netifd \
+	  +juci-printer \
 	  +juci-samba \
 	  +juci-snmpd \
+	  +juci-sfp \
 	  +juci-sysupgrade \
 	  +juci-theme-inteno \
 	  +juci-ubus-core \
