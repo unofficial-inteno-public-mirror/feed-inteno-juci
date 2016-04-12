@@ -498,6 +498,12 @@ config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
+
+config menu
+	option path 'status/wifi/scan'
+	option page 'wireless-status-scan'
+	list acls 'juci-broadcom-wl'
+
 EOF
 [ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
 	cat >> /etc/config/juci << EOF
