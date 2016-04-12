@@ -549,7 +549,7 @@ config menu
 config menu 
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
-	list acls 'juci-dhcp'
+	list acls 'juci-dnsmasq-dhcp'
 
 config menu
 	option path 'status/network/nat'
