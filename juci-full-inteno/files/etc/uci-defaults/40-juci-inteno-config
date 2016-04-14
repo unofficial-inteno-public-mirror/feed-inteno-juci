@@ -338,11 +338,6 @@ config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
 	list acls 'juci-broadcom-wl'
-
-config menu
-	option path 'wifi/general/clients'
-	option page 'wireless-clients'
-	list acls 'juci-broadcom-wl'
 #
 #config menu
 #	option path 'wifi/schedule'
