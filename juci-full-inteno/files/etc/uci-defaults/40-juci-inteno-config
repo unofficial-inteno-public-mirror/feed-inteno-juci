@@ -338,7 +338,6 @@ config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
 	list acls 'juci-broadcom-wl'
-
 #
 #config menu
 #	option path 'wifi/schedule'
@@ -494,6 +493,12 @@ config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
+
+config menu
+	option path 'status/wifi/scan'
+	option page 'wireless-status-scan'
+	list acls 'juci-broadcom-wl'
+
 EOF
 [ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
 	cat >> /etc/config/juci << EOF
@@ -539,7 +544,7 @@ config menu
 config menu 
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
-	list acls 'juci-dhcp'
+	list acls 'juci-dnsmasq-dhcp'
 
 config menu
 	option path 'status/network/nat'
