@@ -222,7 +222,6 @@ config menu
 	option path 'internet/firewall'
 	option page 'internet-firewall'
 	list acls 'juci-firewall-fw3'
-	list acls 'user-support'
 
 config menu
 	option path 'internet/firewall/zones'
@@ -240,14 +239,12 @@ config menu
 	option path 'internet/firewall/port_mapping'
 	option page 'internet-firewall-port-mapping'
 	list acls 'juci-firewall-fw3'
-	list acls 'user-support'
 	option modes 'expert'
 
 config menu
 	option path 'internet/firewall/dmz'
 	option page 'internet-firewall-dmz'
 	list acls 'juci-firewall-fw3'
-	list acls 'user-support'
 	option modes 'expert'
 
 config menu
