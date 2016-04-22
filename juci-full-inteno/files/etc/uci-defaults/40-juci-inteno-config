@@ -556,6 +556,12 @@ config menu
 	option path 'status/diagnostics'
 	option page 'status-diagnostics'
 	list acls 'juci-diagnostics'
+
+config menu
+	option path 'status/diagnostics/speedtest'
+	option page 'status-diagnostics-speedtest'
+	list acls 'juci-diagnostics'
+
 EOF
 	[ "$hasVoice" == "1" ] && {
 		cat >> /etc/config/juci << EOF
