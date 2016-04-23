@@ -467,6 +467,10 @@ config menu
 	list acls 'user-support'
 
 config menu
+	option path 'settings/restart'
+	option page 'settings-restart'
+
+config menu
 	option path 'status'
 	option page 'status'
 	option redirect 'status-system'
@@ -567,10 +571,6 @@ config menu
 	option page 'status-events'
 	option modes 'expert'
 	list acls 'user-support'
-
-config menu
-	option path 'status/restart'
-	option page 'status-restart'
 EOF
 }
 
