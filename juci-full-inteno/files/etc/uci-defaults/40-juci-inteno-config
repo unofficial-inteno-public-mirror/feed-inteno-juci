@@ -248,15 +248,15 @@ config menu
 	option modes 'expert'
 
 config menu
-	option path 'internet/qos'
-	option page 'juci-inteno-qos'
-	list acls 'juci-inteno-qos'
-	list acls 'user-support'
-
-config menu
 	option path 'internet/parental_control'
 	option page 'internet-parental-control'
 	list acls 'juci-firewall-fw3'
+	list acls 'user-support'
+
+config menu
+	option path 'internet/qos'
+	option page 'juci-inteno-qos'
+	list acls 'juci-inteno-qos'
 	list acls 'user-support'
 
 config menu
