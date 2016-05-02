@@ -45,7 +45,7 @@ define Package/juci-full-inteno
 	  +juci-samba \
 	  +juci-snmpd \
 	  +juci-sysupgrade \
-	  +juci-theme-inteno \
+	  +juci-theme-reidar\
 	  +juci-ubus-core \
 	  +juci-uhttpd \
 	  +juci-upnp \

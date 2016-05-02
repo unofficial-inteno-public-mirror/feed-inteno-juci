@@ -486,43 +486,6 @@ config menu
 	list acls 'juci-mod-system'
 
 config menu
-	option path 'status/tv'
-	option page 'status-tv'
-	list acls 'juci-igmpsnoop'
-
-config menu
-	option path 'status/wifi'
-	option page 'wireless-status'
-	list acls 'juci-broadcom-wl'
-
-config menu
-	option path 'status/wifi/scan'
-	option page 'wireless-status-scan'
-	list acls 'juci-broadcom-wl'
-
-EOF
-[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
-	cat >> /etc/config/juci << EOF
-
-config menu
-	option path 'status/dsl'
-	option page 'page-broadcom-dsl-status'
-	list acls 'juci-broadcom-dsl'
-EOF
-}
-	cat >> /etc/config/juci << EOF
-
-config menu
-	option path 'status/usb'
-	option page 'status-usb'
-	list acls 'juci-usb'
-EOF
-
-[ "$hasCatv" == "1" ] && install_catv_status #installs catv status page if needed
-[ "$hasSfp" == "1" ] && install_sfp #installs sfp status page if needed
-	cat >> /etc/config/juci << EOF
-
-config menu
 	option path 'status/network'
 	option page 'status-network'
 	list acls 'juci-network-netifd'
@@ -551,6 +514,43 @@ config menu
 	option path 'status/network/nat'
 	option page 'status-network-nat'
 	list acls 'juci-network-netifd'
+
+config menu
+	option path 'status/wifi'
+	option page 'wireless-status'
+	list acls 'juci-broadcom-wl'
+
+config menu
+	option path 'status/wifi/scan'
+	option page 'wireless-status-scan'
+	list acls 'juci-broadcom-wl'
+
+EOF
+[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
+	cat >> /etc/config/juci << EOF
+
+config menu
+	option path 'status/dsl'
+	option page 'page-broadcom-dsl-status'
+	list acls 'juci-broadcom-dsl'
+EOF
+}
+	cat >> /etc/config/juci << EOF
+
+config menu
+	option path 'status/tv'
+	option page 'status-tv'
+	list acls 'juci-igmpinfo'
+
+config menu
+	option path 'status/usb'
+	option page 'status-usb'
+	list acls 'juci-usb'
+EOF
+
+[ "$hasCatv" == "1" ] && install_catv_status #installs catv status page if needed
+[ "$hasSfp" == "1" ] && install_sfp #installs sfp status page if needed
+	cat >> /etc/config/juci << EOF
 
 config menu
 	option path 'status/diagnostics'
