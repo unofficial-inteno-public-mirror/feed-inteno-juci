@@ -8,6 +8,7 @@ NAME=juci
 
 start_service() {
 	touch /www/index.html.gz
+	chmod 755 /www/cgi-bin/luci
 	# this will simply update index.html to include any files that are for some reason not included
 	# a good way to make sure all plugins are properly included at each boot
 	juci-update
