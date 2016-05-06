@@ -455,6 +455,11 @@ config menu
 	list acls 'juci-mod-system'
 
 config menu
+	option path 'settings/hardware/leds'
+	option page 'settings-hardware-leds'
+	list acls 'juci-mod-system'
+
+config menu
 	option path 'settings/pwrmgmt'
 	option page 'broadcom-pwrmgmt'
 	list acls 'juci-broadcom-pwrmgmt'
