@@ -493,7 +493,7 @@ config menu
 config menu
 	option path 'status/tv'
 	option page 'status-tv'
-	list acls 'juci-igmpsnoop'
+	list acls 'juci-igmpinfo'
 
 config menu
 	option path 'status/wifi'
