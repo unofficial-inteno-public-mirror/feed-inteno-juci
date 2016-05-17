@@ -58,6 +58,7 @@ define Package/juci/install
 	$(CP) $(PKG_BUILD_DIR)/juci-update $(1)/sbin/juci-update
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(CP) ./juci.init $(1)/etc/init.d/juci
+	$(CP) ./files/* $(1)/
 endef
 
 define Package/juci/postinst
