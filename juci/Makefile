@@ -5,7 +5,7 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=f5275199acc1683774b3d2978e4cc96b67aed04a
+PKG_SOURCE_VERSION:=ab13a5d5de51f84ef18507c42ecf562ce138488a
 PKG_VERSION:=2016-05-28
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
@@ -149,4 +149,4 @@ $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-minisnmpd,JUCI mini-SNMPd plugin))
 $(eval $(call RegisterAddon,Plugins,juci-simple-gui,Provides pages for building simplified user gui))
 $(eval $(call RegisterAddon,Plugins,juci-openwrt-wireless,JUCI OpenWRT standard wireless configuration,+libiwinfo-lua))
-$(eval $(call RegisterAddon,Themes,juci-theme-inteno,Juci Default Theme,,depends on y || !JUCI_THEME_SELECTED))
+$(eval $(call RegisterAddon,Themes,juci-theme-dna,Juci Default Theme,,depends on y || !JUCI_THEME_SELECTED))
