@@ -142,7 +142,7 @@ install_ethernet_pages(){
 config menu
 	option path 'internet'
 	option page 'network'
-	option redirect 'internet-ethernet'
+	option redirect 'internet-firewall'
 
 config menu
 	option path 'internet/ethernet'
