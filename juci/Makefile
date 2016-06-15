@@ -5,8 +5,8 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=860ec3dd9d8813a03c7952a65837680e917078d6
-PKG_VERSION:=2016-06-10
+PKG_SOURCE_VERSION:=a6ef91d2b1e5e1ccf11139e166c4056ee46eaee8
+PKG_VERSION:=2016-06-15
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
@@ -122,7 +122,6 @@ $(eval $(call RegisterAddon,Plugins,juci-iconnect,JUCI UBUS interconnect private
 $(eval $(call RegisterAddon,Plugins,juci-igmpinfo, IGMP Snooping Info through kernel snooping tables ))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-backup,Inteno Backup Module))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-provisioning,Inteno Provisioning Module))
-$(eval $(call RegisterAddon,Plugins,juci-inteno-router, Router Backend for Inteno Box))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-multiwan, Package for configuring inteno MultiWAN))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-qos,Inteno QoS module))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-voice-client, Inteno Asterisk Voice Client Module))
