@@ -1,4 +1,5 @@
 #!/bin/sh /etc/rc.common
+. /lib/functions.sh
 
 START=94
 STOP=06
@@ -11,6 +12,17 @@ start_service() {
 	chmod 755 /www/cgi-bin/luci
 	# this will simply update index.html to include any files that are for some reason not included
 	# a good way to make sure all plugins are properly included at each boot
+	config_load juci
+	local theme
+	config_get theme juci theme
+	if [ -f /www/themes/theme.js.gz ]
+		then
+		rm -f /www/themes/theme.js.gz
+	fi
+	if [ -f /www/themes/*$theme.js.gz ]
+		then
+		ln -s /www/themes/*$theme.js.gz /www/themes/theme.js.gz
+	fi
 	juci-update
 }
 

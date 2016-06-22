@@ -1,0 +1,8 @@
+config THEME
+	string
+	prompt "Set JUCI theme"
+	help 
+		To fine a complete list of themes run "ls -l tmp/juci-themes"
+		To add your own theme copy the a folder containing the correct
+		file structure to tmp/juci-themes and set this to that folders name
+	default ""

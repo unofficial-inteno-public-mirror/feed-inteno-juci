@@ -35,9 +35,7 @@ define Package/juci
 endef
 
 define Package/juci/config 
-	config JUCI_THEME_SELECTED
-		bool
-		default n
+  source "$(SOURCE)/Config-juci.in"
 endef
 
 define Build/InstallDev 
