@@ -16,13 +16,6 @@ PKG_RELEASE=$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 PKG_LICENSE:=GPL
 PKG_LICENSE_FILES:=
 
-export CONFIG_JUCI_UBUS_CORE:=$(CONFIG_JUCI_UBUS_CORE)
-export CONFIG_JUCI_THEME_INTENO:=$(CONFIG_JUCI_THEME_INTENO)
-export CONFIG_JUCI_BACKEND_BCM_WIRELESS:=$(CONFIG_JUCI_BACKEND_BCM_WIRELESS)
-export CONFIG_JUCI_BACKEND_BCM_DSL:=$(CONFIG_JUCI_BACKEND_BCM_DSL)
-export CONFIG_JUCI_BACKEND_SYSUPGRADE:=$(CONFIG_JUCI_BACKEND_SYSUPGRADE)
-export CONFIG_JUCI_BACKEND_OPKG:=$(CONFIG_JUCI_BACKEND_OPKG)
-
 include $(INCLUDE_DIR)/package.mk
 
 define Package/juci
@@ -49,7 +42,7 @@ endef
 
 define Package/juci/install
 	$(INSTALL_DIR) $(1)/
-	$(CP) $(PKG_BUILD_DIR)/bin/* $(1)/
+	$(CP) $(PKG_BUILD_DIR)/bin/juci/* $(1)/
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/sbin/
 	$(INSTALL_DIR) $(1)/etc/
@@ -70,13 +63,11 @@ juci-update
 exit 0
 endef
 
-export CONFIG_PACKAGE_juci:=$(CONFIG_PACKAGE_juci)
 $(eval $(call BuildPackage,juci))
 
 ####### Extensions / Themes and Plugins
 
 define RegisterAddonInner
-export CONFIG_PACKAGE_$(2):=$(CONFIG_PACKAGE_$(2))
 define Package/$(2)
 	SECTION:=juci
 	CATEGORY:=JUCI
@@ -84,6 +75,11 @@ define Package/$(2)
 	SUBMENU:=$(1)
 	TITLE:=$(if $(3),$(3),JUCI $(2) plugin)
 	DEPENDS:=$(4)
+endef
+
+define Package/$(2)/install
+	$(INSTALL_DIR) $(1)/
+	$(CP) $(PKG_BUILD_DIR)/bin/$(2)/* $(1)/
 endef
 	
 define Package/$(2)/config
@@ -99,7 +95,6 @@ define RegisterAddon
 	$(eval $(call BuildPackage,$(2)))
 endef
 
-$(eval $(call RegisterAddon,C-backend,juci-ubus-core, JUCI main ubus daemon ))
 $(eval $(call RegisterAddon,Plugins,juci-ethernet, JUCI ethernet core module ))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-dsl, Inteno Broadcom DSL Module (xdslctl based),+juci-ethernet))
 $(eval $(call RegisterAddon,Plugins,juci-broadcom-ethernet, Inteno Broadcom Ethernet Module,+juci-ethernet))
@@ -140,7 +135,6 @@ $(eval $(call RegisterAddon,Plugins,juci-sysupgrade, Inteno Sysupgrade Firmware 
 $(eval $(call RegisterAddon,Plugins,juci-upnp, UPNP Configuration Module))
 $(eval $(call RegisterAddon,Plugins,juci-usb, USB Support In GUI))
 $(eval $(call RegisterAddon,Plugins,juci-uhttpd,UHTTPD configuration))
-$(eval $(call RegisterAddon,Plugins,juci-utils,UHTTPD configuration))
 $(eval $(call RegisterAddon,Plugins,juci-natalie-dect, Natalie DECT interface))
 $(eval $(call RegisterAddon,Plugins,juci-freecwmp,JUCI TR-069 FreeCWMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
