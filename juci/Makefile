@@ -78,8 +78,8 @@ define Package/$(2)
 endef
 
 define Package/$(2)/install
-	$(INSTALL_DIR) $(1)/
-	$(CP) $(PKG_BUILD_DIR)/bin/$(2)/* $(1)/
+	$(INSTALL_DIR) $$(1)/
+	$(CP) $(PKG_BUILD_DIR)/bin/$(2)/* $$(1)/
 endef
 	
 define Package/$(2)/config
