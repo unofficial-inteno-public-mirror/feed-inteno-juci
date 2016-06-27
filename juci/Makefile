@@ -9,7 +9,6 @@ PKG_SOURCE_VERSION:=75e91c01cdc7e981cf0666bcc0100ba7e8fb39e3
 PKG_VERSION:=2016-10-21
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 
 PKG_RELEASE=$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 
@@ -42,6 +41,7 @@ endef
 
 define Package/juci/install
 	$(INSTALL_DIR) $(1)/
+	if [ -d $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME) ]; then $(CP) $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME)/* $(1)/; ln -s $(1)/www/themes/*  $(1)/www/themes/theme.js.gz; fi
 	$(CP) $(PKG_BUILD_DIR)/bin/juci/* $(1)/
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/sbin/
