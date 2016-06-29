@@ -5,10 +5,11 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=75e91c01cdc7e981cf0666bcc0100ba7e8fb39e3
-PKG_VERSION:=2016-10-21
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+PKG_SOURCE_VERSION:=a6a8a84901d4762dc23ce22449707213ad074a85
+PKG_VERSION:=2016-06-20
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
 
 PKG_RELEASE=$(PKG_VERSION)-$(PKG_SOURCE_VERSION)
 
@@ -26,14 +27,14 @@ define Package/juci
   DEPENDS:=+libubox +libubus +owsd +rpcd +rpcd-mod-file +questd
 endef
 
-define Package/juci/config 
-  source "$(SOURCE)/Config-juci.in"
-endef
-
 define Build/InstallDev 
 	$(INSTALL_DIR) $(1)/usr/src/
 	ln -s $(PKG_BUILD_DIR) $(1)/usr/src/juci
 endef 
+
+define Build/Compile
+	$(call Build/Compile/Default,PATH=$(TMP_DIR)/juci-themes/)
+endef
 
 define Package/juci/description
  Provides the JUCI Javascript UCI web interface with standard functionality.
@@ -41,7 +42,6 @@ endef
 
 define Package/juci/install
 	$(INSTALL_DIR) $(1)/
-	if [ -d $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME) ]; then $(CP) $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME)/* $(1)/; fi
 	$(CP) $(PKG_BUILD_DIR)/bin/juci/* $(1)/
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/sbin/
@@ -84,7 +84,7 @@ endef
 	
 define Package/$(2)/config
 	$(5)
-	config $(shell echo $(2) | tr '[:lower:]' '[:upper:]' | sed 's/-/_/g')
+	config $(shell echo $(2) | sed 's/-/_/g')
 		bool 
 		default n
 endef
@@ -141,5 +141,12 @@ $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-minisnmpd,JUCI mini-SNMPd plugin))
 $(eval $(call RegisterAddon,Plugins,juci-simple-gui,Provides pages for building simplified user gui))
 $(eval $(call RegisterAddon,Plugins,juci-openwrt-wireless,JUCI OpenWRT standard wireless configuration,+libiwinfo-lua))
+<<<<<<< fef1710b70980261b5441d0b7622815146b3c2c3
 $(eval $(call RegisterAddon,Plugins,juci-cgroups,Cgroups module))
 $(eval $(call RegisterAddon,Themes,juci-theme-inteno,Juci Default Theme,,depends on y || !JUCI_THEME_SELECTED))
+=======
+
+
+####### dynamically publish themes as packages #######
+$(foreach th,$(wildcard $(TMP_DIR)/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
+>>>>>>> updated openwrt makefile to also send a path to juci makefile where to compile themes
