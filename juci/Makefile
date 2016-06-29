@@ -41,7 +41,7 @@ endef
 
 define Package/juci/install
 	$(INSTALL_DIR) $(1)/
-	if [ -d $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME) ]; then $(CP) $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME)/* $(1)/; ln -s $(1)/www/themes/*  $(1)/www/themes/theme.js.gz; fi
+	if [ -d $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME) ]; then $(CP) $(PKG_BUILD_DIR)/bin/$(CONFIG_THEME)/* $(1)/; fi
 	$(CP) $(PKG_BUILD_DIR)/bin/juci/* $(1)/
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
 	$(INSTALL_DIR) $(1)/sbin/
