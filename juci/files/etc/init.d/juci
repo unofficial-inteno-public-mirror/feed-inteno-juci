@@ -15,13 +15,16 @@ start_service() {
 	config_load juci
 	local theme
 	config_get theme juci theme
-	if [ -f /www/themes/theme.js.gz ]
-		then
-		rm -f /www/themes/theme.js.gz
-	fi
-	if [ -f /www/themes/*$theme.js.gz ]
-		then
-		ln -s /www/themes/*$theme.js.gz /www/themes/theme.js.gz
+	if [ "$theme" ]
+	then
+		if [ -f /www/themes/theme.js.gz ] 
+			then
+			rm -f /www/themes/theme.js.gz
+		fi
+		if [ -f /www/themes/*$theme.js.gz ]
+			then
+			ln -s /www/themes/*$theme.js.gz /www/themes/theme.js.gz
+		fi
 	fi
 	juci-update
 }
