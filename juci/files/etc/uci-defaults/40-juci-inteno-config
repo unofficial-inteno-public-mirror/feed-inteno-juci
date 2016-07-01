@@ -1,16 +1,20 @@
 #!/bin/sh
 
-local hasAdsl=$(db -q get hw.board.hasAdsl)
-local hasVdsl=$(db -q get hw.board.hasVdsl)
-local hasVoice=$(db -q get hw.board.hasVoice)
-local hasDect=$(db -q get hw.board.hasDect)
-local hasSfp=$(db -q get hw.board.hasSfp)
-local hasCatv=$(db -q get hw.board.hasCatv)
+grep -q menu /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config juci 'juci'
+	option homepage 'overview'
 
-[ "$hasVoice" == "1" ] || hasVoice=$hasDect
+config login 'login'
+	option showusername '1'
+	option defaultuser 'user'
 
-install_event_config(){
-	cat >> /etc/config/juci << EOF
+config localization 'localization'
+	option default_language 'en'
+	list languages 'en'
+
+config pagesystemstatus 'pagesystemstatus'
+
 config juci_event 'juci_event'
 	list filter firewall.ssh
 	list filter network.netifd
@@ -22,51 +26,27 @@ config juci_event 'juci_event'
 config menu
 	option path 'overview'
 	option page 'overview'
-EOF
-}
-install_sfp(){
-	cat >> /etc/config/juci << EOF
-config menu
-	option path 'status/sfp'
-	option page 'status-sfp'
-	list acls 'juci-sfp'
-EOF
-}
-install_catv_status(){
-	cat >> /etc/config/juci << EOF
-config menu
-	option path 'status/catv'
-	option page 'status-catv'
-	list acls 'juci-catv'
-EOF
-}
-install_catv_settings(){
-	cat >> /etc/config/juci << EOF
-config menu 
-	option path 'settings/management/catv'
-	option page 'settings-management-catv'
-	list acls 'juci-catv'
-	list acls 'user-support'
-EOF
-}
-install_voice_pages(){
-	cat >> /etc/config/juci << EOF
+
 config menu
 	option path 'voice'
 	option page 'voice'
-	option redirect 'voice-call-log'
+	option redirect 'first'
 	list acls 'juci-inteno-voice-client'
+	list require 'file:/etc/config/voice_client'
+	#list require 'ubus:asterisk'
 
 config menu
 	option path 'voice/call-log'
 	option page 'voice-call-log'
 	list acls 'juci-inteno-voice-client'
+	list require 'ubus:asterisk.call_log'
 
 config menu
 	option path 'voice/sip-accounts'
 	option page 'voice-sip-accounts'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/sip-users'
@@ -74,6 +54,7 @@ config menu
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
 	option modes 'expert'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/lines'
@@ -81,189 +62,184 @@ config menu
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
 	option modes 'expert'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/advanced-settings'
 	option page 'voice-advanced-settings'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
-	option redirect 'voice-advanced-settings-sip'
+	option redirect 'first'
 	option modes 'expert'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/advanced-settings/sip'
 	option page 'voice-advanced-settings-sip'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/advanced-settings/lines'
 	option page 'voice-advanced-settings-lines'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/advanced-settings/dialplan'
 	option page 'voice-advanced-settings-dialplan'
 	list acls 'juci-inteno-voice-client'
 	list acls 'user-support'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/number-blocking'
 	option page 'voice-number-blocking'
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/ringing-schedule'
 	option page 'voice-ringing-schedule'
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
+	list require 'file:/etc/config/voice_client'
 
 config menu
 	option path 'voice/speed_dialing'
 	option page 'voice-speed-dialing'
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
-EOF
-}
+	list require 'file:/etc/config/voice_client'
 
-install_dect_pages(){
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'voice/dect'
 	option page 'voice-dect'
 	list acls 'juci-natalie-dect'
-EOF
-}
+	list require 'file:/etc/config/dect'
+	list require 'ubus:dect'
 
-install_ethernet_pages(){
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet'
 	option page 'network'
-	option redirect 'internet-firewall'
+	option redirect 'first'
 
 config menu
 	option path 'internet/ethernet'
 	option page 'internet-ethernet'
 	list acls 'juci-network-netifd'
+	list require 'ubus:/juci/network'
 
 config menu
 	option path 'internet/ethernet/phy'
 	option page 'page-broadcom-ethernet-phy'
 	list acls 'juci-broadcom-ethernet'
 	list acls 'user-support'
-EOF
-}
+	list require 'file:/etc/config/layer2_interface_ethernet'
+	list require 'file:/etc/config/ports'
 
-install_adsl_pages(){
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/adsl'
 	option page 'page-broadcom-adsl'
 	list acls 'juci-broadcom-dsl'
 	list acls 'user-support'
-EOF
-}
+	list require 'file:/etc/dsl'
+	list require 'file:/etc/config/layer2_interface_adsl'
 
-install_vdsl_pages(){
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/vdsl'
 	option page 'page-broadcom-vdsl'
 	list acls 'juci-broadcom-dsl'
 	list acls 'user-support'
-EOF
-}
+	list require 'file:/etc/dsl'
+	list require 'file:/etc/config/layer2_interface_vdsl'
 
-# install the default menus if they are not already in the config
-uci -q get juci.@menu[0] || {
-	install_event_config
-	[ "$hasVoice" == "1" ] && install_voice_pages
-	[ "$hasDect" == "1" ] && install_dect_pages
-	install_ethernet_pages
-	
-	[ "$hasAdsl" == "1" ] && install_adsl_pages
-	[ "$hasVdsl" == "1" ] && install_vdsl_pages
-
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/vlan'
 	option page 'page-broadcom-ethernet-vlan'
 	list acls 'juci-broadcom-vlan'
 	list acls 'user-support'
+	list require 'file:/etc/config/layer2_interface_vlan'
 
-EOF
-	[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/xdsl'
 	option page 'network-xdsl'
 	list acl 'juci-broadcom-xdsl'
 	list acls 'user-support'
+	list require 'file:/etc/dsl'
+	list require 'file:/etc/config/layer2_interface'
 
-EOF
-}
-	cat >> /etc/config/juci << EOF
 config menu
 	option path 'internet/network'
 	option page 'internet-network'
 	list acls 'juci-network-netifd'
 	list acls 'user-support'
+	list require 'file:/etc/config/network'
 
 config menu
 	option path 'internet/routes'
 	option page 'internet-routes'
 	list acls 'juci-network-netifd'
 	list acls 'user-support'
+	list require 'file:/etc/config/network'
 
 config menu
 	option path 'internet/firewall'
 	option page 'internet-firewall'
 	list acls 'juci-firewall-fw3'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/firewall/zones'
 	option page 'internet-firewall-zones'
 	list acls 'juci-firewall-fw3'
 	list acls 'user-support'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/firewall/rules'
 	option page 'internet-firewall-rules'
 	list acls 'juci-firewall-fw3'
 	list acls 'user-support'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/firewall/port_mapping'
 	option page 'internet-firewall-port-mapping'
 	list acls 'juci-firewall-fw3'
 	option modes 'expert'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/firewall/dmz'
 	option page 'internet-firewall-dmz'
 	list acls 'juci-firewall-fw3'
 	option modes 'expert'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/parental_control'
 	option page 'internet-parental-control'
 	list acls 'juci-firewall-fw3'
 	list acls 'user-support'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'internet/qos'
 	option page 'juci-inteno-qos'
 	list acls 'juci-inteno-qos'
 	list acls 'user-support'
+	list require 'file:/etc/config/qos'
 
 config menu
 	option path 'internet/multiwan'
 	option page 'internet-multiwan'
 	list acls 'juci-inteno-multiwan'
 	list acls 'user-support'
+	list require 'file:/etc/config/multiwan'
 
 config menu
 	option path 'internet/services'
@@ -274,83 +250,99 @@ config menu
 	option path 'internet/services/printer'
 	option page 'internet-services-printer'
 	list acls 'juci-printer'
+	list require 'file:/etc/config/p910nd'
 
 config menu
 	option path 'internet/services/minidlna'
 	option page 'internet-services-minidlna'
 	list acls 'juci-minidlna'
+	list require 'file:/etc/config/minidlna'
 
 config menu
 	option path 'internet/services/upnp'
 	option page 'upnpd-settings'
 	list acls 'juci-upnp'
 	list acls 'user-support'
+	list require 'file:/etc/config/upnpd'
 
 config menu
 	option path 'internet/services/ddns'
 	option page 'internet-services-ddns'
 	list acls 'juci-ddns'
 	list acls 'user-support'
+	list require 'file:/etc/config/ddns'
 
 config menu
 	option path 'internet/services/mcpd'
 	option page 'broadcom-iptv'
 	list acls 'juci-broadcom-iptv'
 	list acls 'user-support'
+	list require 'file:/etc/config/mcpd'
 
 config menu 
 	option path 'internet/services/dhcp'
 	option page 'dhcp-settings'
 	list acls 'juci-dnsmasq-dhcp'
 	list acls 'user-support'
+	list require 'file:/etc/config/dhcp'
 
 config menu 
 	option path 'internet/services/snmpd'
 	option page 'snmpd-config'
 	list acls 'juci-snmpd'
 	list acls 'user-support'
+	list require 'file:/etc/config/snmpd'
 
 config menu
 	option path 'internet/services/samba'
 	option page 'internet-services-samba'
 	list acls 'juci-samba'
+	list require 'file:/etc/config/samba'
 
 config menu
 	option path 'wifi'
 	option page 'wireless'
-	option redirect 'wireless-interfaces'
+	option redirect 'first'
+	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/general'
 	option page 'wireless-general'
 	option redirect 'wireless-interfaces'
 	list acls 'juci-broadcom-wl'
+	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/general/devices'
 	option page 'wireless-devices'
 	list acls 'juci-broadcom-wl'
+	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
 	list acls 'juci-broadcom-wl'
-#
+	list require 'file:/etc/config/wireless'
+
 #config menu
-#	option path 'wifi/schedule'
-#	option page 'wireless-schedule'
-#	list acls 'juci-broadcom-wl'
+#       option path 'wifi/schedule'
+#       option page 'wireless-schedule'
+#       list acls 'juci-broadcom-wl'
+#	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/wps'
 	option page 'wireless-wps'
 	list acls 'juci-broadcom-wl'
+	list require 'file:/etc/config/wireless'
+	list require 'ubus:wps'
 
 config menu
 	option path 'wifi/mac_filter'
 	option page 'wireless-filtering'
 	list acls 'juci-broadcom-wl'
 	option modes 'expert'
+	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/client'
@@ -358,237 +350,275 @@ config menu
 	option acls 'juci-broadcom-wl'
 	list acls 'juci-broadcom-wl'
 	list acls 'not-used'
+	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'settings'
 	option page 'system'
-	option redirect 'settings-system'
+	option redirect 'first'
+	list require 'file:/etc/config/system'
 
 config menu
 	option path 'settings/system'
 	option page 'settings-system'
 	list acls 'juci-mod-system'
+	list require 'file:/etc/config/system'
 
 config menu
 	option path 'settings/users'
 	option page 'settings-users'
 	list acls 'user-admin'
 	list acls 'juci-mod-system'
+	list require 'file:/etc/config/juci'
 
 config menu
 	option path 'settings/password'
 	option page 'settings-password'
 	list acls 'juci-mod-system'
 	list acls 'user-support'
+	list require 'file:/etc/config/passwords'
 
 config menu
 	option path 'settings/upgrade'
 	option page 'settings-upgrade'
 	list acls 'juci-sysupgrade'
 	list acls 'user-support'
+	list require 'file:/etc/config/system'
 
 config menu
 	option path 'settings/upgrade/options'
 	option page 'settings-upgrade-options'
 	list acls 'juci-sysupgrade'
 	list acls 'user-support'
+	list require 'file:/etc/config/system'
 
 config menu
 	option path 'settings/configuration'
 	option page 'settings-configuration'
 	list acls 'juci-mod-system'
 	list acls 'user-support'
+	list require 'file:/etc/config/system'
 
 config menu
 	option path 'settings/configuration/settings'
 	option page 'inteno-backup-settings'
 	list acls 'juci-inteno-backup'
 	list acls 'user-support'
+	list require 'file:/etc/config/backup'
 
 config menu
 	option path 'settings/provisioning'
 	option page 'settings-provisioning-iup'
 	list acls 'juci-inteno-provisioning'
 	list acls 'user-support'
+	list require 'file:/etc/config/provisioning'
 
 config menu
 	option path 'settings/icwmp'
 	option page 'icwmp-config'
 	list acls 'juci-icwmp'
 	list acls 'user-support'
+	list require 'file:/etc/config/cwmp'
 
 config menu
 	option path 'settings/management'
 	option page 'settings-management'
 	list acls 'juci-mod-system'
 	list acls 'user-support'
-EOF
-[ "$hasCatv" == "1" ] && install_catv_settings #installs catv settings page if needed
-	cat >> /etc/config/juci << EOF
+	list require 'file:/etc/config/system'
+
+config menu 
+	option path 'settings/management/catv'
+	option page 'settings-management-catv'
+	list acls 'juci-catv'
+	list acls 'user-support'
+	list require 'file:/etc/config/catv'
 
 config menu
 	option path 'settings/management/dropbear'
 	option page 'settings-management-dropbear'
 	list acls 'juci-dropbear'
 	list acls 'user-support'
+	list require 'file:/etc/config/dropbear'
 
 config menu
 	option path 'settings/management/uhttpd'
 	option page 'page-uhttpd-settings'
 	list acls 'juci-uhttpd'
 	list acls 'user-support'
+	list require 'file:/etc/config/uhttpd'
 
 config menu
 	option path 'settings/management/services'
 	option page 'internet-firewall-services'
 	list acls 'juci-firewall-fw3'
 	list acls 'user-support'
+	list require 'file:/etc/config/firewall'
 
 config menu
 	option path 'settings/hardware'
 	option page 'settings-hardware'
-	option redirect 'settings-hardware-buttons'
+	option redirect 'first'
+	list require 'file:/etc/config/buttons'
+	list require 'file:/etc/config/leds'
 
 config menu
 	option path 'settings/hardware/buttons'
 	option page 'settings-hardware-buttons'
 	list acls 'juci-mod-system'
+	list require 'file:/etc/config/buttons'
 
 config menu
 	option path 'settings/hardware/leds'
 	option page 'settings-hardware-leds'
 	list acls 'juci-mod-system'
+	list require 'file:/etc/config/leds'
 
 config menu
 	option path 'settings/pwrmgmt'
 	option page 'broadcom-pwrmgmt'
 	list acls 'juci-broadcom-pwrmgmt'
 	list acls 'user-support'
+	list require 'file:/etc/config/power_mgmt'
 
 config menu
 	option path 'settings/services'
 	option page 'settings-services'
 	list acls 'juci-mod-system'
 	list acls 'user-support'
+	list require 'ubus:service'
 
 config menu
 	option path 'settings/restart'
 	option page 'settings-restart'
+	list require 'ubus:/juci/system'
 
 config menu
 	option path 'status'
 	option page 'status'
-	option redirect 'status-system'
+	option redirect 'first'
 
 config menu
 	option path 'status/system'
 	option page 'status-system'
 	list acls 'juci-mod-system'
+	list require 'ubus:router->info'
 
 config menu
 	option path 'status/system/processes'
 	option page 'status-system-processes'
 	list acls 'juci-mod-system'
+	list require 'ubus:/juci/system.process'
 
 config menu
 	option path 'status/network'
 	option page 'status-network'
 	list acls 'juci-network-netifd'
+	list require 'ubus:network.interface'
 
 config menu
 	option path 'status/network/clients'
 	option page 'netifd-status-clients'
 	list acls 'juci-network-netifd'
+	list require 'ubus:router->clients'
 
 config menu
 	option path 'status/network/routes'
 	option page 'status-network-routes'
 	list acls 'juci-network-netifd'
+	list require 'ubus:/juci/network.status'
 
 config menu
 	option path 'status/network/upnpd'
 	option page 'upnpd-status'
 	list acls 'juci-upnp'
+	list require 'ubus:/juci/upnpd'
 
 config menu 
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
 	list acls 'juci-dnsmasq-dhcp'
+	list require 'ubus:router->leases'
 
 config menu
 	option path 'status/network/nat'
 	option page 'status-network-nat'
 	list acls 'juci-network-netifd'
+	list require 'ubus:/juci/network'
 
 config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
+	list require 'ubus:router->stas'
 
 config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
 	list acls 'juci-broadcom-wl'
-
-EOF
-[ "$hasAdsl" == "1" -o "$hasVdsl" == "1" ] && {
-	cat >> /etc/config/juci << EOF
+	list require 'ubus:/juci/wireless'
 
 config menu
 	option path 'status/dsl'
 	option page 'page-broadcom-dsl-status'
 	list acls 'juci-broadcom-dsl'
-EOF
-}
-	cat >> /etc/config/juci << EOF
+	list require 'file:/etc/dsl'
+	#list require 'ubus:router->dslstats'
 
 config menu
 	option path 'status/tv'
 	option page 'status-tv'
 	list acls 'juci-igmpinfo'
+	list require 'ubus:router->igmptable'
 
 config menu
 	option path 'status/usb'
 	option page 'status-usb'
 	list acls 'juci-usb'
-EOF
+	list require 'ubus:router->usb'
 
-[ "$hasCatv" == "1" ] && install_catv_status #installs catv status page if needed
-[ "$hasSfp" == "1" ] && install_sfp #installs sfp status page if needed
-	cat >> /etc/config/juci << EOF
+config menu
+	option path 'status/catv'
+	option page 'status-catv'
+	list acls 'juci-catv'
+	list require 'ubus:catv'
+
+config menu
+	option path 'status/sfp'
+	option page 'status-sfp'
+	list acls 'juci-sfp'
+	list require 'ubus:sfp.ddm'
+	list require 'ubus:sfp.rom'
 
 config menu
 	option path 'status/diagnostics'
 	option page 'status-diagnostics'
 	list acls 'juci-diagnostics'
+	list require 'ubus:/juci/diagnostics'
 
 config menu
 	option path 'status/diagnostics/speedtest'
 	option page 'status-diagnostics-speedtest'
 	list acls 'juci-diagnostics'
+	list require 'ubus:/juci/speedtest'
 
-EOF
-	[ "$hasVoice" == "1" ] && {
-		cat >> /etc/config/juci << EOF
 config menu
 	option path 'status/phone'
 	option page 'status-phone'
 	list acls 'juci-inteno-voice-client'
-EOF
-}
-	cat >> /etc/config/juci << EOF
+	list require 'ubus:asterisk'
+
 config menu
 	option path 'status/events'
 	option page 'status-events'
 	option modes 'expert'
 	list acls 'user-support'
+	list require 'ubus:log'
+	list require 'ubus:router->logs'
 EOF
 }
 
-# install the default menus if they are not already in the config
-ubus call uci delete '{"config":"rpcd","type":"login"}'
-ubus call uci commit '{"config":"rpcd"}'
-
+grep -q juci /etc/config/rpcd || {
 cat >> /etc/config/rpcd << EOF
 config login
 	option username 'admin'
@@ -730,6 +760,6 @@ config login
 	list write 'core'
 	list write 'unauthenticated'
 EOF
-/etc/init.d/rpcd reload
+}
 
 exit 0
