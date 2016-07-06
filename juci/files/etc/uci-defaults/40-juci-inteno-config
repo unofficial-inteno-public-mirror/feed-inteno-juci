@@ -365,6 +365,18 @@ config menu
 	list require 'file:/etc/config/system'
 
 config menu
+	option path 'settings/system/timeservers'
+	option page 'settings-system-timeservers'
+	list acls 'juci-mod-system'
+	list require 'file:/etc/config/system'
+
+config menu
+	option path 'settings/system/log'
+	option page 'settings-system-log'
+	list acls 'juci-mod-system'
+	list require 'file:/etc/config/system'
+
+config menu
 	option path 'settings/users'
 	option page 'settings-users'
 	list acls 'user-admin'
