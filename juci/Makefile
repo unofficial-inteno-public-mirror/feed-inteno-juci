@@ -5,8 +5,8 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=c2c7e1fe049f185a0f70fa2f2ac9dfe620ad12c2
-PKG_VERSION:=2016-05-13
+PKG_SOURCE_VERSION:=47c0cbef776d07dc38bbfbeae91ea7493fb0cb46
+PKG_VERSION:=2016-07-08
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)
@@ -31,7 +31,7 @@ define Package/juci
   CATEGORY:=JUCI
   MENU=1
   TITLE:=JUCI Core Package (select this to select default plugins)
-  DEPENDS:=+lua +libuv-lua +libuci-lua +libubus-lua +libubox-lua +luaposix33 +libubox +libubus +uhttpd +uhttpd-mod-ubus +rpcd +questd
+  DEPENDS:=+lua +libuci-lua +libubus-lua +libubox-lua +luaposix33 +libubox +libubus +uhttpd +uhttpd-mod-ubus +rpcd +questd
 endef
 
 define Package/juci/config 
@@ -56,8 +56,8 @@ define Package/juci/install
 	$(CP) $(PKG_BUILD_DIR)/juci_redirect.sh $(1)/www/cgi-bin/luci
 	$(INSTALL_DIR) $(1)/sbin/
 	$(CP) $(PKG_BUILD_DIR)/juci-update $(1)/sbin/juci-update
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(CP) ./juci.init $(1)/etc/init.d/juci
+	$(INSTALL_DIR) $(1)/etc/
+	$(CP) ./files/etc/* $(1)/etc/
 endef
 
 define Package/juci/postinst
