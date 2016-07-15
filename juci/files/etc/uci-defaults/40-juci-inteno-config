@@ -440,6 +440,12 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
+config menu
+	option path 'settings/management/owsd'
+	option page 'settings-management-owsd'
+	list acls 'juci-owsd'
+	list require 'file:/etc/config/owsd'
+
 config menu 
 	option path 'settings/management/catv'
 	option page 'settings-management-catv'
