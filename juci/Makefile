@@ -133,6 +133,7 @@ $(eval $(call RegisterAddon,Plugins,juci-mod-status, Deprecated JUCI Status Repo
 $(eval $(call RegisterAddon,Plugins,juci-mod-system, JUCI System Administration Module))
 $(eval $(call RegisterAddon,Plugins,juci-netmode, Inteno NetMode default reset functionality))
 $(eval $(call RegisterAddon,Plugins,juci-network-netifd, OpenWRT netifd network configuration module))
+$(eval $(call RegisterAddon,Plugins,juci-owsd, OWSD configuration module))
 $(eval $(call RegisterAddon,Plugins,juci-printer, Inteno printer configuration page))
 $(eval $(call RegisterAddon,Plugins,juci-router-openwrt, OpenWRT Router Interface))
 $(eval $(call RegisterAddon,Plugins,juci-samba, Samba36 Configuration))
