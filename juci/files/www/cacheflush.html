@@ -1,0 +1,13 @@
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/")
+    xhr.setRequestHeader("Cache-Control", "no-cache")
+    xhr.setRequestHeader("Pragma", "no-cache")
+    xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE) {
+                window.location = "/";
+            }
+        };
+    xhr.send();
+</script>
+
