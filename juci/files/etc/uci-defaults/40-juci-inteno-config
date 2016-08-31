@@ -372,8 +372,8 @@ config menu
 	list require 'file:/etc/config/juci'
 
 config menu
-	option path 'system/password'
-	option page 'system-password'
+	option path 'system/passwords'
+	option page 'system-passwords'
 	list acls 'juci-mod-system'
 	list acls 'user-support'
 	list require 'file:/etc/config/passwords'
@@ -517,7 +517,7 @@ config menu
 
 config menu
 	option path 'status/network/clients'
-	option page 'status-network-clietns'
+	option page 'status-network-clientatuss'
 	list acls 'juci-network-netifd'
 	list require 'ubus:router->clients'
 
@@ -553,7 +553,7 @@ config menu
 
 config menu
 	option path 'status/wifi/status'
-	option page 'status-wifi-status'
+	option page 'status-wifi-clients'
 	list acls 'juci-broadcom-wl'
 	list require 'ubus:router->stas'
 
