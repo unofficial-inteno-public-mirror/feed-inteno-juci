@@ -450,7 +450,7 @@ config menu
 config menu
 	option path 'system/management/uhttp'
 	option page 'system-management-uhttp'
-	lsit acls 'not-used'
+	list acls 'not-used'
 	list acls 'juci-uhttpd'
 	list acls 'user-support'
 	list require 'file:/etc/config/uhttpd'
