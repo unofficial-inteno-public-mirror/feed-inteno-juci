@@ -468,13 +468,6 @@ config menu
 	list require 'file:/etc/config/uhttpd'
 
 config menu
-	option path 'settings/management/services'
-	option page 'internet-firewall-services'
-	list acls 'juci-firewall-fw3'
-	list acls 'user-support'
-	list require 'file:/etc/config/firewall'
-
-config menu
 	option path 'settings/hardware'
 	option page 'settings-hardware'
 	option redirect 'first'
