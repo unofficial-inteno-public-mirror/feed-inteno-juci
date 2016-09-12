@@ -1,40 +1,16 @@
-#!/bin/sh
-
-grep -qw "config juci 'juci'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config juci 'juci'
 	option homepage 'overview'
 
-EOF
-}
-
-grep -qw "config login 'login'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config login 'login'
 	option showusername '1'
 	option defaultuser 'user'
 
-EOF
-}
-
-grep -qw "config localization 'localization'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config localization 'localization'
 	option default_language 'en'
 	list languages 'en'
 
-EOF
-}
-
-grep -qw "config pagesystemstatus 'pagesystemstatus'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config pagesystemstatus 'pagesystemstatus'
 
-EOF
-}
-
-grep -qw "config juci_event 'juci_event'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config juci_event 'juci_event'
 	list filter firewall.ssh
 	list filter network.netifd
@@ -43,20 +19,10 @@ config juci_event 'juci_event'
 	list filter system.ntp
 	list filter iptv.mcpd
 
-EOF
-}
-
-grep -qw "option path 'overview'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'overview'
 	option page 'overview'
 
-EOF
-}
-
-grep -qw "option path 'voice'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice'
 	option page 'voice'
@@ -65,22 +31,12 @@ config menu
 	list require 'file:/etc/config/voice_client'
 	#list require 'ubus:asterisk'
 
-EOF
-}
-
-grep -qw "option path 'voice/call-log'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/call-log'
 	option page 'voice-call-log'
 	list acls 'juci-inteno-voice-client'
 	list require 'ubus:asterisk.call_log'
 
-EOF
-}
-
-grep -qw "option path 'voice/sip-accounts'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/sip-accounts'
 	option page 'voice-sip-accounts'
@@ -88,11 +44,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/sip-users'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/sip-users'
 	option page 'voice-sip-users'
@@ -101,11 +52,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/lines'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/lines'
 	option page 'voice-lines'
@@ -114,11 +60,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/advanced-settings'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/advanced-settings'
 	option page 'voice-advanced-settings'
@@ -128,11 +69,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/advanced-settings/sip'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/advanced-settings/sip'
 	option page 'voice-advanced-settings-sip'
@@ -140,11 +76,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/advanced-settings/lines'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/advanced-settings/lines'
 	option page 'voice-advanced-settings-lines'
@@ -152,11 +83,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/advanced-settings/dialplan'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/advanced-settings/dialplan'
 	option page 'voice-advanced-settings-dialplan'
@@ -164,11 +90,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/number-blocking'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/number-blocking'
 	option page 'voice-number-blocking'
@@ -176,11 +97,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/ringing-schedule'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/ringing-schedule'
 	option page 'voice-ringing-schedule'
@@ -188,11 +104,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/speed_dialing'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/speed_dialing'
 	option page 'voice-speed-dialing'
@@ -200,11 +111,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
 
-EOF
-}
-
-grep -qw "option path 'voice/dect'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'voice/dect'
 	option page 'voice-dect'
@@ -212,32 +118,17 @@ config menu
 	list require 'file:/etc/config/dect'
 	list require 'ubus:dect'
 
-EOF
-}
-
-grep -qw "option path 'internet'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet'
 	option page 'network'
 	option redirect 'first'
 
-EOF
-}
-
-grep -qw "option path 'internet/ethernet'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet'
 	option page 'internet-ethernet'
 	list acls 'juci-network-netifd'
 	list require 'ubus:/juci/network'
 
-EOF
-}
-
-grep -qw "option path 'internet/ethernet/phy'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/phy'
 	option page 'page-broadcom-ethernet-phy'
@@ -246,11 +137,6 @@ config menu
 	list require 'file:/etc/config/layer2_interface_ethernet'
 	list require 'file:/etc/config/ports'
 
-EOF
-}
-
-grep -qw "option path 'internet/ethernet/adsl'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/adsl'
 	option page 'page-broadcom-adsl'
@@ -259,11 +145,6 @@ config menu
 	list require 'file:/etc/dsl'
 	list require 'file:/etc/config/layer2_interface_adsl'
 
-EOF
-}
-
-grep -qw "option path 'internet/ethernet/vdsl'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/vdsl'
 	option page 'page-broadcom-vdsl'
@@ -272,11 +153,6 @@ config menu
 	list require 'file:/etc/dsl'
 	list require 'file:/etc/config/layer2_interface_vdsl'
 
-EOF
-}
-
-grep -qw "option path 'internet/ethernet/vlan'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/ethernet/vlan'
 	option page 'page-broadcom-ethernet-vlan'
@@ -284,11 +160,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/layer2_interface_vlan'
 
-EOF
-}
-
-grep -qw "option path 'internet/xdsl'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/xdsl'
 	option page 'network-xdsl'
@@ -297,11 +168,6 @@ config menu
 	list require 'file:/etc/dsl'
 	list require 'file:/etc/config/layer2_interface'
 
-EOF
-}
-
-grep -qw "option path 'internet/network'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/network'
 	option page 'internet-network'
@@ -309,11 +175,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/network'
 
-EOF
-}
-
-grep -qw "option path 'internet/routes'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/routes'
 	option page 'internet-routes'
@@ -321,22 +182,12 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/network'
 
-EOF
-}
-
-grep -qw "option path 'internet/firewall'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/firewall'
 	option page 'internet-firewall'
 	list acls 'juci-firewall-fw3'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/firewall/zones'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/firewall/zones'
 	option page 'internet-firewall-zones'
@@ -344,11 +195,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/firewall/rules'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/firewall/rules'
 	option page 'internet-firewall-rules'
@@ -356,11 +202,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/firewall/port_mapping'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/firewall/port_mapping'
 	option page 'internet-firewall-port-mapping'
@@ -368,11 +209,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/firewall/dmz'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/firewall/dmz'
 	option page 'internet-firewall-dmz'
@@ -380,11 +216,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/parental_control'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/parental_control'
 	option page 'internet-parental-control'
@@ -392,11 +223,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/firewall'
 
-EOF
-}
-
-grep -qw "option path 'internet/qos'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/qos'
 	option page 'juci-inteno-qos'
@@ -404,11 +230,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/qos'
 
-EOF
-}
-
-grep -qw "option path 'internet/multiwan'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/multiwan'
 	option page 'internet-multiwan'
@@ -416,43 +237,23 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/multiwan'
 
-EOF
-}
-
-grep -qw "option path 'internet/services'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services'
 	option page 'internet-services'
 	list acls 'juci-network-netifd'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/printer'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/printer'
 	option page 'internet-services-printer'
 	list acls 'juci-printer'
 	list require 'file:/etc/config/p910nd'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/minidlna'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/minidlna'
 	option page 'internet-services-minidlna'
 	list acls 'juci-minidlna'
 	list require 'file:/etc/config/minidlna'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/upnp'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/upnp'
 	option page 'upnpd-settings'
@@ -460,11 +261,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/upnpd'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/ddns'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/ddns'
 	option page 'internet-services-ddns'
@@ -472,11 +268,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/ddns'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/mcpd'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/mcpd'
 	option page 'broadcom-iptv'
@@ -484,11 +275,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/mcpd'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/dhcp'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu 
 	option path 'internet/services/dhcp'
 	option page 'dhcp-settings'
@@ -496,11 +282,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/dhcp'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/snmpd'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu 
 	option path 'internet/services/snmpd'
 	option page 'snmpd-config'
@@ -508,33 +289,18 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/snmpd'
 
-EOF
-}
-
-grep -qw "option path 'internet/services/samba'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'internet/services/samba'
 	option page 'internet-services-samba'
 	list acls 'juci-samba'
 	list require 'file:/etc/config/samba'
 
-EOF
-}
-
-grep -qw "option path 'wifi'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi'
 	option page 'wireless'
 	option redirect 'first'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'wifi/general'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/general'
 	option page 'wireless-general'
@@ -542,43 +308,24 @@ config menu
 	list acls 'juci-broadcom-wl'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'wifi/general/devices'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/general/devices'
 	option page 'wireless-devices'
 	list acls 'juci-broadcom-wl'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'wifi/general/interfaces'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
 	list acls 'juci-broadcom-wl'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'wifi/schedule'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 #config menu
 #       option path 'wifi/schedule'
 #       option page 'wireless-schedule'
 #       list acls 'juci-broadcom-wl'
 #	list require 'file:/etc/config/wireless'
-EOF
-}
 
-grep -qw "option path 'wifi/wps'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/wps'
 	option page 'wireless-wps'
@@ -586,11 +333,6 @@ config menu
 	list require 'file:/etc/config/wireless'
 	list require 'ubus:wps'
 
-EOF
-}
-
-grep -qw "option path 'wifi/mac_filter'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/mac_filter'
 	option page 'wireless-filtering'
@@ -598,11 +340,6 @@ config menu
 	option modes 'expert'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'wifi/client'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'wifi/client'
 	option page 'wireless-client-mode'
@@ -611,44 +348,24 @@ config menu
 	list acls 'not-used'
 	list require 'file:/etc/config/wireless'
 
-EOF
-}
-
-grep -qw "option path 'settings'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings'
 	option page 'system'
 	option redirect 'first'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/system'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/system'
 	option page 'settings-system'
 	list acls 'juci-mod-system'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/system/timeservers'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/system/timeservers'
 	option page 'settings-system-timeservers'
 	list acls 'juci-mod-system'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/system/log'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/system/log'
 	option page 'settings-system-log'
@@ -656,11 +373,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/users'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/users'
 	option page 'settings-users'
@@ -668,11 +380,6 @@ config menu
 	list acls 'juci-mod-system'
 	list require 'file:/etc/config/juci'
 
-EOF
-}
-
-grep -qw "option path 'settings/password'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/password'
 	option page 'settings-password'
@@ -680,11 +387,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/passwords'
 
-EOF
-}
-
-grep -qw "option path 'settings/upgrade'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/upgrade'
 	option page 'settings-upgrade'
@@ -692,11 +394,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/upgrade/options'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/upgrade/options'
 	option page 'settings-upgrade-options'
@@ -704,11 +401,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/configuration'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/configuration'
 	option page 'settings-configuration'
@@ -716,11 +408,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/configuration/settings'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/configuration/settings'
 	option page 'inteno-backup-settings'
@@ -728,11 +415,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/backup'
 
-EOF
-}
-
-grep -qw "option path 'settings/provisioning'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/provisioning'
 	option page 'settings-provisioning-iup'
@@ -740,11 +422,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/provisioning'
 
-EOF
-}
-
-grep -qw "option path 'settings/icwmp'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/icwmp'
 	option page 'icwmp-config'
@@ -752,11 +429,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/cwmp'
 
-EOF
-}
-
-grep -qw "option path 'settings/management'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/management'
 	option page 'settings-management'
@@ -764,22 +436,12 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/system'
 
-EOF
-}
-
-grep -qw "option path 'settings/management/owsd'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/management/owsd'
 	option page 'settings-management-owsd'
 	list acls 'juci-owsd'
 	list require 'file:/etc/config/owsd'
 
-EOF
-}
-
-grep -qw "option path 'settings/management/catv'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu 
 	option path 'settings/management/catv'
 	option page 'settings-management-catv'
@@ -787,11 +449,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/catv'
 
-EOF
-}
-
-grep -qw "option path 'settings/management/dropbear'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/management/dropbear'
 	option page 'settings-management-dropbear'
@@ -799,11 +456,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/dropbear'
 
-EOF
-}
-
-grep -qw "option path 'settings/management/uhttpd'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/management/uhttpd'
 	option page 'page-uhttpd-settings'
@@ -811,11 +463,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/uhttpd'
 
-EOF
-}
-
-grep -qw "option path 'settings/hardware'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/hardware'
 	option page 'settings-hardware'
@@ -823,33 +470,18 @@ config menu
 	list require 'file:/etc/config/buttons'
 	list require 'file:/etc/config/leds'
 
-EOF
-}
-
-grep -qw "option path 'settings/hardware/buttons'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/hardware/buttons'
 	option page 'settings-hardware-buttons'
 	list acls 'juci-mod-system'
 	list require 'file:/etc/config/buttons'
 
-EOF
-}
-
-grep -qw "option path 'settings/hardware/leds'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/hardware/leds'
 	option page 'settings-hardware-leds'
 	list acls 'juci-mod-system'
 	list require 'file:/etc/config/leds'
 
-EOF
-}
-
-grep -qw "option path 'settings/pwrmgmt'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/pwrmgmt'
 	option page 'broadcom-pwrmgmt'
@@ -857,11 +489,6 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/power_mgmt'
 
-EOF
-}
-
-grep -qw "option path 'settings/services'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/services'
 	option page 'settings-services'
@@ -869,141 +496,76 @@ config menu
 	list acls 'user-support'
 	list require 'ubus:service'
 
-EOF
-}
-
-grep -qw "option path 'settings/restart'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'settings/restart'
 	option page 'settings-restart'
 	list require 'ubus:/juci/system'
 
-EOF
-}
-
-grep -qw "option path 'status'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status'
 	option page 'status'
 	option redirect 'first'
 
-EOF
-}
-
-grep -qw "option path 'status/system'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/system'
 	option page 'status-system'
 	list acls 'juci-mod-system'
 	list require 'ubus:router->info'
 
-EOF
-}
-
-grep -qw "option path 'status/system/processes'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/system/processes'
 	option page 'status-system-processes'
 	list acls 'juci-mod-system'
 	list require 'ubus:/juci/system.process'
 
-EOF
-}
-
-grep -qw "option path 'status/network'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/network'
 	option page 'status-network'
 	list acls 'juci-network-netifd'
 	list require 'ubus:network.interface'
 
-EOF
-}
-
-grep -qw "option path 'status/network/clients'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/network/clients'
 	option page 'netifd-status-clients'
 	list acls 'juci-network-netifd'
 	list require 'ubus:router->clients'
 
-EOF
-}
-
-grep -qw "option path 'status/network/routes'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/network/routes'
 	option page 'status-network-routes'
 	list acls 'juci-network-netifd'
 	list require 'ubus:/juci/network.status'
 
-EOF
-}
-
-grep -qw "option path 'status/network/upnpd'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/network/upnpd'
 	option page 'upnpd-status'
 	list acls 'juci-upnp'
 	list require 'ubus:/juci/upnpd'
 
-EOF
-}
-
-grep -qw "option path 'status/network/dhcp'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu 
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
 	list acls 'juci-dnsmasq-dhcp'
 	list require 'ubus:router->leases'
 
-EOF
-}
-
-grep -qw "option path 'status/network/nat'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/network/nat'
 	option page 'status-network-nat'
 	list acls 'juci-network-netifd'
 	list require 'ubus:/juci/network'
 
-EOF
-}
-
-grep -qw "option path 'status/wifi'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
 	list require 'ubus:router->stas'
 
-EOF
-}
-
-grep -qw "option path 'status/wifi/scan'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
 	list acls 'juci-broadcom-wl'
 	list require 'ubus:/juci/wireless'
 
-EOF
-}
-
-grep -qw "option path 'status/dsl'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/dsl'
 	option page 'page-broadcom-dsl-status'
@@ -1011,44 +573,24 @@ config menu
 	list require 'file:/etc/dsl'
 	#list require 'ubus:router->dslstats'
 
-EOF
-}
-
-grep -qw "option path 'status/tv'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/tv'
 	option page 'status-tv'
 	list acls 'juci-igmpinfo'
 	list require 'ubus:router->igmptable'
 
-EOF
-}
-
-grep -qw "option path 'status/usb'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/usb'
 	option page 'status-usb'
 	list acls 'juci-usb'
 	list require 'ubus:router->usb'
 
-EOF
-}
-
-grep -qw "option path 'status/catv'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/catv'
 	option page 'status-catv'
 	list acls 'juci-catv'
 	list require 'ubus:catv'
 
-EOF
-}
-
-grep -qw "option path 'status/sfp'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/sfp'
 	option page 'status-sfp'
@@ -1056,44 +598,24 @@ config menu
 	list require 'ubus:sfp.ddm'
 	list require 'ubus:sfp.rom'
 
-EOF
-}
-
-grep -qw "option path 'status/diagnostics'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/diagnostics'
 	option page 'status-diagnostics'
 	list acls 'juci-diagnostics'
 	list require 'ubus:/juci/diagnostics'
 
-EOF
-}
-
-grep -qw "option path 'status/diagnostics/speedtest'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/diagnostics/speedtest'
 	option page 'status-diagnostics-speedtest'
 	list acls 'juci-diagnostics'
 	list require 'ubus:/juci/speedtest'
 
-EOF
-}
-
-grep -qw "option path 'status/phone'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/phone'
 	option page 'status-phone'
 	list acls 'juci-inteno-voice-client'
 	list require 'ubus:asterisk'
 
-EOF
-}
-
-grep -qw "option path 'status/events'" /etc/config/juci || {
-cat > /etc/config/juci << EOF
 config menu
 	option path 'status/events'
 	option page 'status-events'
@@ -1101,154 +623,3 @@ config menu
 	list acls 'user-support'
 	list require 'ubus:log'
 	list require 'ubus:router->logs'
-EOF
-}
-
-grep -q juci /etc/config/rpcd || {
-cat > /etc/config/rpcd << EOF
-config login
-	option username 'admin'
-	option password '\$p\$admin'
-	list write 'user-admin'
-	list write 'user-support'
-	list write 'juci-broadcom-dsl'
-	list write 'juci-broadcom-dsl-admin'
-	list write 'juci-broadcom-ethernet'
-	list write 'juci-broadcom-iptv'
-	list write 'juci-broadcom-vlan'
-	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
-	list write 'juci-broadcom-xdsl'
-	list write 'juci-catv'
-	list write 'juci-broadcom-pwrmgmt'
-	list write 'juci-ddns'
-	list write 'juci-diagnostics'
-	list write 'juci-dnsmasq-dhcp'
-	list write 'juci-dropbear'
-	list write 'juci-ethernet'
-	list write 'juci-event'
-	list write 'juci-firewall-fw3'
-	list write 'juci-iconnect'
-	list write 'juci-icwmp'
-	list write 'juci-igmpinfo'
-	list write 'juci-inteno-backup'
-	list write 'juci-inteno-multiwan'
-	list write 'juci-inteno-provisioning'
-	list write 'juci-inteno-qos'
-	list write 'juci-inteno-voice-client'
-	list write 'juci-minidlna'
-	list write 'juci-mod-status'
-	list write 'juci-mod-system'
-	list write 'juci-mod-system-admin'
-	list write 'juci-natalie-dect'
-	list write 'juci-netmode'
-	list write 'juci-network-netifd'
-	list write 'juci-owsd'
-	list write 'juci-printer'
-	list write 'juci-samba'
-	list write 'juci-sfp'
-	list write 'juci-snmpd'
-	list write 'juci-sysupgrade'
-	list write 'juci-uhttpd'
-	list write 'juci-upnp'
-	list write 'juci-usb'
-	list write 'core'
-	list write 'unauthenticated'
-
-config login
-	option username 'support'
-	option password '\$p\$support'
-	list write 'user-support'
-	list write 'juci-broadcom-dsl'
-	list write 'juci-broadcom-dsl-admin'
-	list write 'juci-broadcom-ethernet'
-	list write 'juci-broadcom-iptv'
-	list write 'juci-broadcom-vlan'
-	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
-	list write 'juci-broadcom-xdsl'
-	list write 'juci-broadcom-pwrmgmt'
-	list write 'juci-catv'
-	list write 'juci-ddns'
-	list write 'juci-diagnostics'
-	list write 'juci-dnsmasq-dhcp'
-	list write 'juci-dropbear'
-	list write 'juci-ethernet'
-	list write 'juci-event'
-	list write 'juci-firewall-fw3'
-	list write 'juci-iconnect'
-	list write 'juci-icwmp'
-	list write 'juci-igmpinfo'
-	list write 'juci-inteno-backup'
-	list write 'juci-inteno-multiwan'
-	list write 'juci-inteno-provisioning'
-	list write 'juci-inteno-qos'
-	list write 'juci-inteno-voice-client'
-	list write 'juci-minidlna'
-	list write 'juci-mod-status'
-	list write 'juci-mod-system'
-	list write 'juci-natalie-dect'
-	list write 'juci-netmode'
-	list write 'juci-network-netifd'
-	list write 'juci-owsd'
-	list write 'juci-printer'
-	list write 'juci-samba'
-	list write 'juci-sfp'
-	list write 'juci-snmpd'
-	list write 'juci-sysupgrade'
-	list write 'juci-uhttpd'
-	list write 'juci-upnp'
-	list write 'juci-usb'
-	list write 'core'
-	list write 'unauthenticated'
-
-config login
-	option username 'user'
-	option password '\$p\$user'
-	list write 'user-user'
-	list write 'juci-broadcom-dsl'
-	list write 'juci-broadcom-dsl-admin'
-	list write 'juci-broadcom-ethernet'
-	list write 'juci-broadcom-iptv'
-	list write 'juci-broadcom-vlan'
-	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
-	list write 'juci-catv'
-	list write 'juci-ddns'
-	list write 'juci-diagnostics'
-	list write 'juci-dnsmasq-dhcp'
-	list write 'juci-dropbear'
-	list write 'juci-ethernet'
-	list write 'juci-event'
-	list write 'juci-firewall-fw3'
-	list write 'juci-iconnect'
-	list write 'juci-igmpinfo'
-	list write 'juci-inteno-backup'
-	list write 'juci-inteno-multiwan'
-	list write 'juci-inteno-provisioning'
-	list write 'juci-inteno-qos'
-	list write 'juci-inteno-voice-client'
-	list write 'juci-minidlna'
-	list write 'juci-mod-status'
-	list write 'juci-mod-system'
-	list write 'juci-natalie-dect'
-	list write 'juci-netmode'
-	list write 'juci-network-netifd'
-	list write 'juci-owsd'
-	list write 'juci-printer'
-	list write 'juci-samba'
-	list write 'juci-sfp'
-	list write 'juci-snmpd'
-	list write 'juci-sysupgrade'
-	list write 'juci-uhttpd'
-	list write 'juci-upnp'
-	list write 'juci-usb'
-	list write 'core'
-	list write 'unauthenticated'
-EOF
-}
-
-exit 0
