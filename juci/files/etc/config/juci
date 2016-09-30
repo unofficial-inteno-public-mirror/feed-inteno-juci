@@ -9,6 +9,9 @@ config localization 'localization'
 	option default_language 'en'
 	list languages 'en'
 
+config wiki wiki
+	option visible 1
+
 config pagesystemstatus 'pagesystemstatus'
 
 config juci_event 'juci_event'
