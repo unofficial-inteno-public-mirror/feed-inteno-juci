@@ -22,6 +22,38 @@ config juci_event 'juci_event'
 	list filter system.ntp
 	list filter iptv.mcpd
 
+config widget
+	list name overviewWidget99Clientmode
+	list name overviewStatusWidget99Netmode
+	list name overviewWidget90Netmode
+
+config widget
+	list name overviewWidget11WAN
+	list name overviewStatusWidget11WAN
+	list name overviewWidget10Network
+	list name overviewStatusWidget10Network
+	list name overviewSliderWidget10Network
+	list name overviewStatusWidget01Ethernet
+	option link "#!/internet-ethernet"
+
+config widget
+	list name overviewWidget40Voice
+	list name overviewStatusWidget40Voice
+	option link "#!/voice-call-log"
+
+config widget
+	list name overviewWidget00WiFi
+	list name overviewStatusWidget00WiFi
+	option link "#!/wireless-status"
+
+config widget
+	list name overviewWidget20USB
+	list name overviewStatusWidget20USB
+	option link "#!/status-usb"
+
+config widget
+	list name overviewStatusWidget99OnlineUpgrade
+
 config menu
 	option path 'overview'
 	option page 'overview'

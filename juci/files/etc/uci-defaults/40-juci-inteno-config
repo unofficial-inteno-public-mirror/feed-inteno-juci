@@ -10,6 +10,43 @@ sed -i "s/ubus:\/juci\/wireless/ubus:juci\.wireless/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/diagnostics/ubus:juci\.diagnostics/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/speedtest/ubus:juci\.speedtest/g" /etc/config/juci
 
+uci get -q juci.@widget[0] || {
+cat >> /etc/config/juci << EOF
+config widget
+	list name overviewWidget99Clientmode
+	list name overviewStatusWidget99Netmode
+	list name overviewWidget90Netmode
+
+config widget
+	list name overviewWidget11WAN
+	list name overviewStatusWidget11WAN
+	list name overviewWidget10Network
+	list name overviewStatusWidget10Network
+	list name overviewSliderWidget10Network
+	list name overviewStatusWidget01Ethernet
+	option link "#!/internet-ethernet"
+
+config widget
+	list name overviewWidget40Voice
+	list name overviewStatusWidget40Voice
+	option link "#!/voice-call-log"
+
+config widget
+	list name overviewWidget00WiFi
+	list name overviewStatusWidget00WiFi
+	option link "#!/wireless-status"
+
+config widget
+	list name overviewWidget20USB
+	list name overviewStatusWidget20USB
+	option link "#!/status-usb"
+
+config widget
+	list name overviewStatusWidget99OnlineUpgrade
+
+EOF
+}
+
 grep -qw "config juci 'juci'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config juci 'juci'
