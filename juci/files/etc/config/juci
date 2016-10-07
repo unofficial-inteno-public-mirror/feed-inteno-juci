@@ -255,7 +255,6 @@ config menu
 	option path 'internet/parental_control'
 	option page 'internet-parental-control'
 	list acls 'juci-firewall-fw3'
-	list acls 'user-support'
 	list require 'file:/etc/config/firewall'
 
 config menu
