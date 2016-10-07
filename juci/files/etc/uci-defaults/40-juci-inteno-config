@@ -30,6 +30,7 @@ config widget
 	list name overviewWidget40Voice
 	list name overviewStatusWidget40Voice
 	option link "#!/voice-call-log"
+	option require "asterisk.status"
 
 config widget
 	list name overviewWidget00WiFi
