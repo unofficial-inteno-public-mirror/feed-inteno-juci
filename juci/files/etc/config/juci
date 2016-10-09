@@ -544,13 +544,13 @@ config menu
 	option path 'status/system'
 	option page 'status-system'
 	list acls 'juci-mod-system'
-	list require 'ubus:router->info'
+	list require 'ubus:router.system->info'
 
 config menu
 	option path 'status/system/processes'
 	option page 'status-system-processes'
 	list acls 'juci-mod-system'
-	list require 'ubus:router->processes'
+	list require 'ubus:router.system->processes'
 
 config menu
 	option path 'status/network'
@@ -562,7 +562,7 @@ config menu
 	option path 'status/network/clients'
 	option page 'netifd-status-clients'
 	list acls 'juci-network-netifd'
-	list require 'ubus:router->clients'
+	list require 'ubus:router.network->clients'
 
 config menu
 	option path 'status/network/routes'
@@ -580,7 +580,7 @@ config menu
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
 	list acls 'juci-dnsmasq-dhcp'
-	list require 'ubus:router->leases'
+	list require 'ubus:router.network->leases'
 
 config menu
 	option path 'status/network/nat'
@@ -592,7 +592,7 @@ config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
-	list require 'ubus:router->stas'
+	list require 'ubus:router.wireless->stas'
 
 config menu
 	option path 'status/wifi/scan'
@@ -605,19 +605,19 @@ config menu
 	option page 'page-broadcom-dsl-status'
 	list acls 'juci-broadcom-dsl'
 	list require 'file:/etc/dsl'
-	#list require 'ubus:router->dslstats'
+	#list require 'ubus:router.dsl->stats'
 
 config menu
 	option path 'status/tv'
 	option page 'status-tv'
 	list acls 'juci-igmpinfo'
-	list require 'ubus:router->igmptable'
+	list require 'ubus:router.net->igmp_snooping'
 
 config menu
 	option path 'status/usb'
 	option page 'status-usb'
 	list acls 'juci-usb'
-	list require 'ubus:router->usb'
+	list require 'ubus:router.usb->status'
 
 config menu
 	option path 'status/catv'
@@ -656,4 +656,4 @@ config menu
 	option modes 'expert'
 	list acls 'user-support'
 	list require 'ubus:log'
-	list require 'ubus:router->logs'
+	list require 'ubus:router.system->logs'

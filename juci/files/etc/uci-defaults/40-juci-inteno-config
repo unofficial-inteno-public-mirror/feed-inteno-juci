@@ -3,12 +3,23 @@
 # convert from old style juci ubus objects to new style juci ubus objects
 sed -i "s/ubus:\/juci\/network\.status/ubus:juci\.network/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/network/ubus:juci\.network/g" /etc/config/juci
-sed -i "s/ubus:\/juci\/system\.process/ubus:router->processes/g" /etc/config/juci
+sed -i "s/ubus:\/juci\/system\.process/ubus:router.system->processes/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/system/ubus:juci\.system/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/upnpd/ubus:juci\.upnpd/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/wireless/ubus:juci\.wireless/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/diagnostics/ubus:juci\.diagnostics/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/speedtest/ubus:juci\.speedtest/g" /etc/config/juci
+
+# convert from old style router ubus objects to new style router ubus objects
+sed -i "s/ubus:router->info/ubus:router.system->info/g" /etc/config/juci
+sed -i "s/ubus:router->processes/ubus:router.system->processes/g" /etc/config/juci
+sed -i "s/ubus:router->clients/ubus:router.network->clients/g" /etc/config/juci
+sed -i "s/ubus:router->leases/ubus:router.network->leases/g" /etc/config/juci
+sed -i "s/ubus:router->stas/ubus:router.wireless->stas/g" /etc/config/juci
+sed -i "s/ubus:router->dslstats/ubus:router.dsl->stats/g" /etc/config/juci
+sed -i "s/ubus:router->igmptable/ubus:router.net->igmp_snooping/g" /etc/config/juci
+sed -i "s/ubus:router->usb/ubus:router.usb->status/g" /etc/config/juci
+sed -i "s/ubus:router->logs/ubus:router.system->logs/g" /etc/config/juci
 
 uci get -q juci.@widget[0] || {
 cat >> /etc/config/juci << EOF
@@ -945,7 +956,7 @@ config menu
 	option path 'status/system'
 	option page 'status-system'
 	list acls 'juci-mod-system'
-	list require 'ubus:router->info'
+	list require 'ubus:router.system->info'
 
 EOF
 }
@@ -956,7 +967,7 @@ config menu
 	option path 'status/system/processes'
 	option page 'status-system-processes'
 	list acls 'juci-mod-system'
-	list require 'ubus:router->processes'
+	list require 'ubus:router.system->processes'
 
 EOF
 }
@@ -978,7 +989,7 @@ config menu
 	option path 'status/network/clients'
 	option page 'netifd-status-clients'
 	list acls 'juci-network-netifd'
-	list require 'ubus:router->clients'
+	list require 'ubus:router.network->clients'
 
 EOF
 }
@@ -1011,7 +1022,7 @@ config menu
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
 	list acls 'juci-dnsmasq-dhcp'
-	list require 'ubus:router->leases'
+	list require 'ubus:router.network->leases'
 
 EOF
 }
@@ -1033,7 +1044,7 @@ config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
 	list acls 'juci-broadcom-wl'
-	list require 'ubus:router->stas'
+	list require 'ubus:router.wireless->stas'
 
 EOF
 }
@@ -1056,7 +1067,7 @@ config menu
 	option page 'page-broadcom-dsl-status'
 	list acls 'juci-broadcom-dsl'
 	list require 'file:/etc/dsl'
-	#list require 'ubus:router->dslstats'
+	#list require 'ubus:router.dsl->stats'
 
 EOF
 }
@@ -1067,7 +1078,7 @@ config menu
 	option path 'status/tv'
 	option page 'status-tv'
 	list acls 'juci-igmpinfo'
-	list require 'ubus:router->igmptable'
+	list require 'ubus:router.net->igmp_snooping'
 
 EOF
 }
@@ -1078,7 +1089,7 @@ config menu
 	option path 'status/usb'
 	option page 'status-usb'
 	list acls 'juci-usb'
-	list require 'ubus:router->usb'
+	list require 'ubus:router.usb->status'
 
 EOF
 }
@@ -1147,7 +1158,7 @@ config menu
 	option modes 'expert'
 	list acls 'user-support'
 	list require 'ubus:log'
-	list require 'ubus:router->logs'
+	list require 'ubus:router.system->logs'
 EOF
 }
 
