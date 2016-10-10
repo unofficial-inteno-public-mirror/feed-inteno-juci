@@ -162,7 +162,7 @@ config menu
 	option path 'internet/ethernet'
 	option page 'internet-ethernet'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:network.device'
 
 config menu
 	option path 'internet/ethernet/phy'
@@ -568,7 +568,7 @@ config menu
 	option path 'status/network/routes'
 	option page 'status-network-routes'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:router.net'
 
 config menu
 	option path 'status/network/upnpd'
@@ -586,7 +586,7 @@ config menu
 	option path 'status/network/nat'
 	option page 'status-network-nat'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:router.net'
 
 config menu
 	option path 'status/wifi'

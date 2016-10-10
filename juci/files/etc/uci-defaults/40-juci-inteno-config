@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # convert from old style juci ubus objects to new style juci ubus objects
-sed -i "s/ubus:\/juci\/network\.status/ubus:juci\.network/g" /etc/config/juci
-sed -i "s/ubus:\/juci\/network/ubus:juci\.network/g" /etc/config/juci
+sed -i "s/ubus:\/juci\/network\.status/ubus:router\.net/g" /etc/config/juci
+sed -i "s/ubus:\/juci\/network/ubus:router\.net/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/system\.process/ubus:router.system->processes/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/system/ubus:juci\.system/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/upnpd/ubus:juci\.upnpd/g" /etc/config/juci
@@ -290,7 +290,7 @@ config menu
 	option path 'internet/ethernet'
 	option page 'internet-ethernet'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:network.device'
 
 EOF
 }
@@ -1000,7 +1000,7 @@ config menu
 	option path 'status/network/routes'
 	option page 'status-network-routes'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:router.net'
 
 EOF
 }
@@ -1033,7 +1033,7 @@ config menu
 	option path 'status/network/nat'
 	option page 'status-network-nat'
 	list acls 'juci-network-netifd'
-	list require 'ubus:juci.network'
+	list require 'ubus:router.net'
 
 EOF
 }
