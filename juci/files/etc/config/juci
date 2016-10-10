@@ -309,14 +309,14 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/mcpd'
 
-config menu 
+config menu
 	option path 'internet/services/dhcp'
 	option page 'dhcp-settings'
 	list acls 'juci-dnsmasq-dhcp'
 	list acls 'user-support'
 	list require 'file:/etc/config/dhcp'
 
-config menu 
+config menu
 	option path 'internet/services/snmpd'
 	option page 'snmpd-config'
 	list acls 'juci-snmpd'
@@ -576,7 +576,7 @@ config menu
 	list acls 'juci-upnp'
 	list require 'ubus:juci.upnpd'
 
-config menu 
+config menu
 	option path 'status/network/dhcp'
 	option page 'dhcp-status'
 	list acls 'juci-dnsmasq-dhcp'
