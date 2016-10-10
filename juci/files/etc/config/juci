@@ -131,7 +131,6 @@ config menu
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
-	list acls 'user-admin'
 
 config menu
 	option path 'voice/ringing-schedule'
@@ -139,7 +138,6 @@ config menu
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
-	list acls 'user-admin'
 
 config menu
 	option path 'voice/speed_dialing'
@@ -147,7 +145,6 @@ config menu
 	list acls 'juci-inteno-voice-client'
 	option modes 'expert'
 	list require 'file:/etc/config/voice_client'
-	list acls 'user-admin'
 
 config menu
 	option path 'voice/dect'
@@ -478,7 +475,7 @@ config menu
 	option page 'settings-management-owsd'
 	list acls 'juci-owsd'
 	list require 'file:/etc/config/owsd'
-	list acls 'user-admin'
+	list acls 'user-support'
 
 config menu 
 	option path 'settings/management/catv'
