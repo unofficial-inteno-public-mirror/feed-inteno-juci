@@ -53,9 +53,7 @@ define Package/juci/install
 	$(INSTALL_DIR) $(1)/
 	$(CP) $(PKG_BUILD_DIR)/bin/* $(1)/
 	$(INSTALL_DIR) $(1)/www/cgi-bin/
-	$(CP) $(PKG_BUILD_DIR)/juci_redirect.sh $(1)/www/cgi-bin/luci
 	$(INSTALL_DIR) $(1)/sbin/
-	$(CP) $(PKG_BUILD_DIR)/juci-update $(1)/sbin/juci-update
 	$(INSTALL_DIR) $(1)/etc/
 	$(CP) ./files/etc/* $(1)/etc/
 	$(INSTALL_DIR) $(1)/www/
