@@ -40,6 +40,7 @@ config widget
 	list name overviewWidget40Voice
 	list name overviewStatusWidget40Voice
 	option link "#!/voice-call-log"
+	list require "ubus:asterisk"
 
 config widget
 	list name overviewWidget00WiFi
