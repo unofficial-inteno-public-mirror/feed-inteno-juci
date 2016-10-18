@@ -717,6 +717,18 @@ config menu
 EOF
 }
 
+grep -qw "option page 'settings-connectivity-test'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'settings/system/connectivity'
+	option page 'settings-connectivity-test'
+	list acls 'juci-mod-system'
+	list acls 'user-support'
+	list require 'file:/etc/config/system'
+
+EOF
+}
+
 grep -qw "option page 'settings-users'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config menu

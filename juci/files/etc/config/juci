@@ -409,6 +409,13 @@ config menu
 	list require 'file:/etc/config/system'
 
 config menu
+	option path 'settings/system/connectivity'
+	option page 'settings-connectivity-test'
+	list acls 'juci-mod-system'
+	list acls 'user-support'
+	list require 'file:/etc/config/system'
+
+config menu
 	option path 'settings/users'
 	option page 'settings-users'
 	list acls 'user-admin'
