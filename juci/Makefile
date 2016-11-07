@@ -5,7 +5,7 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=aa7965424772490551025e172b9743e711cefba2
+PKG_SOURCE_VERSION:=ae9da89f74b8f914d8f65ee6b9a36409e3180d6f
 PKG_VERSION:=2016-11-07
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
@@ -33,11 +33,7 @@ define Build/InstallDev
 endef 
 
 define Build/Compile
-	if [ -d $(TOPDIR)/customerconfigs ]; then
-		$(call Build/Compile/Default,THEME_PATH="$(TOPDIR)/customerconfigs/juci-themes/")
-	else
-		$(call Build/Compile/Default)
-	fi
+	$(call Build/Compile/Default,THEME_PATH="$(TOPDIR)/customerconfigs/juci-themes/")
 endef
 
 define Package/juci/description
