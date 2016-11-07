@@ -33,7 +33,11 @@ define Build/InstallDev
 endef 
 
 define Build/Compile
-	$(call Build/Compile/Default,THEME_PATH="$(TMP_DIR)/juci-themes/")
+	if [ -d $(TOPDIR)/customerconfigs ]; then
+		$(call Build/Compile/Default,THEME_PATH="$(TOPDIR)/customerconfigs/juci-themes/")
+	else
+		$(call Build/Compile/Default)
+	fi
 endef
 
 define Package/juci/description
@@ -136,8 +140,6 @@ $(eval $(call RegisterAddon,Plugins,juci-natalie-dect, Natalie DECT interface))
 $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-minisnmpd,JUCI mini-SNMPd plugin))
 $(eval $(call RegisterAddon,Plugins,juci-cgroups,Cgroups module))
-$(eval $(call RegisterAddon,Themes,juci-theme-inteno,Juci Default Theme,,depends on y || !JUCI_THEME_SELECTED))
-
 
 ####### dynamically publish themes as packages #######
-$(foreach th,$(wildcard $(TMP_DIR)/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
+$(foreach th,$(wildcard $(TOPDIR)/customerconfigs/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
