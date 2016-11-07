@@ -111,16 +111,13 @@ $(eval $(call RegisterAddon,Plugins,juci-dropbear, Dropbear Configuration,dropbe
 $(eval $(call RegisterAddon,Plugins,juci-event, JUCI Event Subsystem ))
 $(eval $(call RegisterAddon,Plugins,juci-firewall-fw3, FW3 Firewall Configuration /etc/config/firewall ))
 $(eval $(call RegisterAddon,Plugins,juci-icwmp, Configure TR69 settings /etc/config/icwmp ))
-$(eval $(call RegisterAddon,Plugins,juci-iconnect,JUCI UBUS interconnect private cloud interface))
 $(eval $(call RegisterAddon,Plugins,juci-igmpinfo, IGMP Snooping Info through kernel snooping tables ))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-backup,Inteno Backup Module))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-provisioning,Inteno Provisioning Module))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-multiwan, Package for configuring inteno MultiWAN))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-qos,Inteno QoS module))
 $(eval $(call RegisterAddon,Plugins,juci-inteno-voice-client, Inteno Asterisk Voice Client Module))
-$(eval $(call RegisterAddon,Plugins,juci-jquery-console, Quake Style Dropdown Console for JUCI in browser))
 $(eval $(call RegisterAddon,Plugins,juci-realtime-graphs,Realtime Graphs based on luci-bwc,+luci-bwc))
-$(eval $(call RegisterAddon,Plugins,juci-macdb, MAC Address to Manufacturer Name resolution for juci))
 $(eval $(call RegisterAddon,Plugins,juci-minidlna, MiniDLNA Configuration))
 $(eval $(call RegisterAddon,Plugins,juci-mod-status, Deprecated JUCI Status Reporting Module))
 $(eval $(call RegisterAddon,Plugins,juci-mod-system, JUCI System Administration Module))
@@ -136,17 +133,11 @@ $(eval $(call RegisterAddon,Plugins,juci-upnp, UPNP Configuration Module))
 $(eval $(call RegisterAddon,Plugins,juci-usb, USB Support In GUI))
 $(eval $(call RegisterAddon,Plugins,juci-uhttpd,UHTTPD configuration))
 $(eval $(call RegisterAddon,Plugins,juci-natalie-dect, Natalie DECT interface))
-$(eval $(call RegisterAddon,Plugins,juci-freecwmp,JUCI TR-069 FreeCWMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-minisnmpd,JUCI mini-SNMPd plugin))
-$(eval $(call RegisterAddon,Plugins,juci-simple-gui,Provides pages for building simplified user gui))
-$(eval $(call RegisterAddon,Plugins,juci-openwrt-wireless,JUCI OpenWRT standard wireless configuration,+libiwinfo-lua))
-<<<<<<< fef1710b70980261b5441d0b7622815146b3c2c3
 $(eval $(call RegisterAddon,Plugins,juci-cgroups,Cgroups module))
 $(eval $(call RegisterAddon,Themes,juci-theme-inteno,Juci Default Theme,,depends on y || !JUCI_THEME_SELECTED))
-=======
 
 
 ####### dynamically publish themes as packages #######
 $(foreach th,$(wildcard $(TMP_DIR)/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
->>>>>>> updated openwrt makefile to also send a path to juci makefile where to compile themes
