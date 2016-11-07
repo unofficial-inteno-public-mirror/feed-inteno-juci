@@ -1,5 +1,6 @@
 config juci 'juci'
 	option homepage 'overview'
+	option theme 'juci-theme-inteno'
 
 config login 'login'
 	option showusername '1'
