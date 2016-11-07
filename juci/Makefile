@@ -136,6 +136,7 @@ $(eval $(call RegisterAddon,Plugins,juci-natalie-dect, Natalie DECT interface))
 $(eval $(call RegisterAddon,Plugins,juci-snmpd,JUCI SNMP plugin))
 $(eval $(call RegisterAddon,Plugins,juci-minisnmpd,JUCI mini-SNMPd plugin))
 $(eval $(call RegisterAddon,Plugins,juci-cgroups,Cgroups module))
+$(eval $(call RegisterAddon,Themes,juci-theme-inteno))
 
 ####### dynamically publish themes as packages #######
 $(foreach th,$(wildcard $(TOPDIR)/customerconfigs/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
