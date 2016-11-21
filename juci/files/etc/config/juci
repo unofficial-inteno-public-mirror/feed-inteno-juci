@@ -11,7 +11,7 @@ config localization 'localization'
 	list languages 'en'
 
 config wiki wiki
-	option visible 0
+	option visible 1
 
 config pagesystemstatus 'pagesystemstatus'
 
