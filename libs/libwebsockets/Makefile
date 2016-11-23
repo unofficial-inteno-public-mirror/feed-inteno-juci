@@ -43,7 +43,7 @@ define Package/$(PKG_NAME)/config
 	choice $(PKG_NAME)_SSL
 		prompt "SSL support"
 		depends on PACKAGE_$(PKG_NAME)
-		default $(PKG_NAME)_SSL_none
+		default $(PKG_NAME)_SSL_OpenSSL
 
 			config $(PKG_NAME)_SSL_none
 				bool "no"
