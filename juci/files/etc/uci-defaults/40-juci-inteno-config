@@ -22,7 +22,7 @@ sed -i "s/ubus:router->usb/ubus:router.usb->status/g" /etc/config/juci
 sed -i "s/ubus:router->logs/ubus:router.system->logs/g" /etc/config/juci
 sed -i "s/ubus:wps/ubus:router.wps/g" /etc/config/juci
 
-uci get -q juci.@widget[0] || {
+uci -q get juci.@widget[0] || {
 cat >> /etc/config/juci << EOF
 config widget
 	list name overviewWidget99Clientmode
