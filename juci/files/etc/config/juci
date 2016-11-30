@@ -367,7 +367,7 @@ config menu
 	option page 'wireless-wps'
 	list acls 'juci-broadcom-wl'
 	list require 'file:/etc/config/wireless'
-	list require 'ubus:wps'
+	list require 'ubus:router.wps'
 
 config menu
 	option path 'wifi/mac_filter'
