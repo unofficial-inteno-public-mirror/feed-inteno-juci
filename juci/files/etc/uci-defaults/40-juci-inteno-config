@@ -22,7 +22,16 @@ sed -i "s/ubus:router->usb/ubus:router.usb->status/g" /etc/config/juci
 sed -i "s/ubus:router->logs/ubus:router.system->logs/g" /etc/config/juci
 sed -i "s/ubus:wps/ubus:router.wps/g" /etc/config/juci
 
-uci -q get juci.juci.theme || uci set juci.juci.theme="juci-theme-inteno"
+uci -q get juci.juci.theme || {
+	uci -q set juci.juci.theme="juci-theme-inteno"
+}
+
+uci -q get juci.wiki || {
+	uci -q set juci.wiki=wiki
+	uci -q set juci.wiki.visible=0
+}
+
+uci commit juci
 
 uci -q get juci.@widget[0] || {
 cat >> /etc/config/juci << EOF
