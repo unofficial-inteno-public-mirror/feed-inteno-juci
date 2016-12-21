@@ -65,7 +65,7 @@ EOF
 grep -qw "config juci 'juci'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config juci 'juci'
-	option homepage 'overview'
+	option homepage 'netmode-wizard'
 
 EOF
 }
