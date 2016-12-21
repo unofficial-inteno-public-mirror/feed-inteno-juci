@@ -108,6 +108,15 @@ config juci_event 'juci_event'
 EOF
 }
 
+grep -qw "option page 'netmode-wizard'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'netmode-wizard'
+	option page 'netmode-wizard'
+
+EOF
+}
+
 grep -qw "option page 'overview'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config menu
