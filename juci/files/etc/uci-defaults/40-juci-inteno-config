@@ -113,6 +113,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'netmode-wizard'
 	option page 'netmode-wizard'
+	option hidden '1'
 
 EOF
 }

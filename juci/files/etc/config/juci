@@ -1,5 +1,5 @@
 config juci 'juci'
-	option homepage 'overview'
+	option homepage 'netmode-wizard'
 	option theme 'juci-theme-inteno'
 
 config login 'login'
