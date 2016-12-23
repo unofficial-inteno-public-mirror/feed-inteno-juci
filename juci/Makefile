@@ -33,7 +33,7 @@ define Build/InstallDev
 endef 
 
 define Build/Compile
-	$(call Build/Compile/Default,THEME_PATH="$(TOPDIR)/customerconfigs/juci-themes/")
+	$(call Build/Compile/Default,THEME_PATH="$(TOPDIR)/themes/")
 endef
 
 define Package/juci/description
@@ -139,4 +139,4 @@ $(eval $(call RegisterAddon,Plugins,juci-cgroups,Cgroups module))
 $(eval $(call RegisterAddon,Themes,juci-theme-inteno))
 
 ####### dynamically publish themes as packages #######
-$(foreach th,$(wildcard $(TOPDIR)/customerconfigs/juci-themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
+$(foreach th,$(wildcard $(TOPDIR)/themes/*),$(eval $(call RegisterAddon,Themes,$(notdir $(th)))))
