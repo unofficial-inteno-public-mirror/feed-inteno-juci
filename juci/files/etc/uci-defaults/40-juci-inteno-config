@@ -22,7 +22,9 @@ sed -i "s/ubus:router->usb/ubus:router.usb->status/g" /etc/config/juci
 sed -i "s/ubus:router->logs/ubus:router.system->logs/g" /etc/config/juci
 sed -i "s/ubus:wps/ubus:router.wps/g" /etc/config/juci
 
-uci -q get juci.juci.theme || {
+curtheme="$(uci -q get juci.juci.theme)"
+themexst="$(opkg list ${curtheme:-NOTHEME})"
+[ -n "$curtheme" -a -n "$themexst" ] || {
 	theme="$(opkg list | grep juci-theme | head -1 | awk '{print$1}')"
 	theme=${theme:-juci-theme-inteno}
 	uci -q set juci.juci.theme="$theme"
