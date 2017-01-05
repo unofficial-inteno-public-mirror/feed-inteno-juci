@@ -651,6 +651,17 @@ cat >> /etc/config/juci << EOF
 EOF
 }
 
+grep -qw "option page 'wireless-band-steering'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+        option path 'wifi/band_steering'
+	option page 'wireless-band-steering'
+	list acls 'juci-broadcom-wl'
+	list require 'file:/etc/config/wireless'
+
+EOF
+}
+
 grep -qw "option page 'wireless-wps'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config menu
