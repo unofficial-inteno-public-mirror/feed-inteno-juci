@@ -30,9 +30,13 @@ themexst="$(opkg list ${curtheme:-NOTHEME})"
 	uci -q set juci.juci.theme="$theme"
 }
 
+#wikiver="$(db get hw.board.iopVersion | awk -F'[_,-]' '{print$3}' | tr -d 'A-Z' | awk -F'.' '{print$1$2}')"
+wikiver="v310"
+
 uci -q get juci.wiki || {
 	uci -q set juci.wiki=wiki
 	uci -q set juci.wiki.visible=0
+	uci -q set juci.wiki.version=$wikiver
 }
 
 uci commit juci
