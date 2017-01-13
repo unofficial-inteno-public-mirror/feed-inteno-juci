@@ -12,6 +12,7 @@ config localization 'localization'
 
 config wiki wiki
 	option visible 1
+	option version v310
 
 config pagesystemstatus 'pagesystemstatus'
 
