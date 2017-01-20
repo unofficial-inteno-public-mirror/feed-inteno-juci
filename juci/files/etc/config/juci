@@ -342,52 +342,52 @@ config menu
 	option path 'wifi/general'
 	option page 'wireless-general'
 	option redirect 'wireless-interfaces'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/general/devices'
 	option page 'wireless-devices'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 #config menu
 #       option path 'wifi/schedule'
 #       option page 'wireless-schedule'
-#       list acls 'juci-broadcom-wl'
+#       list acls 'juci-wireless'
 #	list require 'file:/etc/config/wireless'
 
 config menu
         option path 'wifi/band_steering'
         option page 'wireless-band-steering'
-        list acls 'juci-broadcom-wl'
+        list acls 'juci-wireless'
         list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/wps'
 	option page 'wireless-wps'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 	list require 'ubus:router.wps'
 
 config menu
 	option path 'wifi/mac_filter'
 	option page 'wireless-filtering'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	option modes 'expert'
 	list require 'file:/etc/config/wireless'
 
 config menu
 	option path 'wifi/client'
 	option page 'wireless-client-mode'
-	option acls 'juci-broadcom-wl'
-	list acls 'juci-broadcom-wl'
+	option acls 'juci-wireless'
+	list acls 'juci-wireless'
 	list acls 'not-used'
 	list require 'file:/etc/config/wireless'
 
@@ -608,13 +608,13 @@ config menu
 config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'ubus:router.wireless->stas'
 
 config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'ubus:juci.wireless'
 
 config menu
