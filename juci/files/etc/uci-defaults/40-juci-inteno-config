@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# move juci-broadcom-wl plugin to juci-wireless
+sed -i "s/juci-broadcom-wl/juci-wireless/g" /etc/config/juci
+sed -i "s/juci-broadcom-wl/juci-wireless/g" /etc/config/rpcd
+
 # convert from old style juci ubus objects to new style juci ubus objects
 sed -i "s/ubus:\/juci\/network\.status/ubus:router\.net/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/network/ubus:router\.net/g" /etc/config/juci
