@@ -610,7 +610,7 @@ config menu
 	option path 'wifi/general'
 	option page 'wireless-general'
 	option redirect 'wireless-interfaces'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 EOF
@@ -621,7 +621,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'wifi/general/devices'
 	option page 'wireless-devices'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 EOF
@@ -632,7 +632,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'wifi/general/interfaces'
 	option page 'wireless-interfaces'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 
 EOF
@@ -643,8 +643,19 @@ cat >> /etc/config/juci << EOF
 #config menu
 #       option path 'wifi/schedule'
 #       option page 'wireless-schedule'
-#       list acls 'juci-broadcom-wl'
+#       list acls 'juci-wireless'
 #	list require 'file:/etc/config/wireless'
+EOF
+}
+
+grep -qw "option page 'wireless-band-steering'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+        option path 'wifi/band_steering'
+	option page 'wireless-band-steering'
+	list acls 'juci-wireless'
+	list require 'file:/etc/config/wireless'
+
 EOF
 }
 
@@ -653,7 +664,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'wifi/wps'
 	option page 'wireless-wps'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'file:/etc/config/wireless'
 	list require 'ubus:wps'
 
@@ -665,7 +676,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'wifi/mac_filter'
 	option page 'wireless-filtering'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	option modes 'expert'
 	list require 'file:/etc/config/wireless'
 
@@ -677,8 +688,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'wifi/client'
 	option page 'wireless-client-mode'
-	option acls 'juci-broadcom-wl'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list acls 'not-used'
 	list require 'file:/etc/config/wireless'
 
@@ -1068,7 +1078,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'status/wifi'
 	option page 'wireless-status'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'ubus:router.wireless->stas'
 
 EOF
@@ -1079,7 +1089,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
-	list acls 'juci-broadcom-wl'
+	list acls 'juci-wireless'
 	list require 'ubus:juci.wireless'
 
 EOF
@@ -1200,8 +1210,8 @@ config login
 	list write 'juci-broadcom-iptv'
 	list write 'juci-broadcom-vlan'
 	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
+	list write 'juci-wireless'
+	list write 'juci-wireless-admin'
 	list write 'juci-broadcom-xdsl'
 	list write 'juci-catv'
 	list write 'juci-broadcom-pwrmgmt'
@@ -1249,8 +1259,8 @@ config login
 	list write 'juci-broadcom-iptv'
 	list write 'juci-broadcom-vlan'
 	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
+	list write 'juci-wireless'
+	list write 'juci-wireless-admin'
 	list write 'juci-broadcom-xdsl'
 	list write 'juci-broadcom-pwrmgmt'
 	list write 'juci-catv'
@@ -1297,8 +1307,8 @@ config login
 	list write 'juci-broadcom-iptv'
 	list write 'juci-broadcom-vlan'
 	list write 'juci-broadcom-vlan-admin'
-	list write 'juci-broadcom-wl'
-	list write 'juci-broadcom-wl-admin'
+	list write 'juci-wireless'
+	list write 'juci-wireless-admin'
 	list write 'juci-catv'
 	list write 'juci-ddns'
 	list write 'juci-diagnostics'
