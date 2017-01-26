@@ -1,0 +1,28 @@
+From 287a122e14b061d4341e9bdfffe755191c356b83 Mon Sep 17 00:00:00 2001
+From: Denis Osvald <denis.osvald@sartura.hr>
+Date: Mon, 12 Dec 2016 14:30:59 +0100
+Subject: [PATCH 2/3] wsi remove unused 'upgraded' boolean field
+
+It was introduced in 7df53c555009d599c0474e49c58d3f8a46792382
+but was never used...
+
+Signed-off-by: Denis Osvald <denis.osvald@sartura.hr>
+---
+ lib/private-libwebsockets.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/lib/private-libwebsockets.h b/lib/private-libwebsockets.h
+index e89932b..63a2534 100644
+--- a/lib/private-libwebsockets.h
++++ b/lib/private-libwebsockets.h
+@@ -1425,7 +1425,6 @@ struct lws {
+ #endif
+ #ifdef LWS_OPENSSL_SUPPORT
+ 	unsigned int use_ssl:3;
+-	unsigned int upgraded:1;
+ #endif
+ #ifdef _WIN32
+ 	unsigned int sock_send_blocking:1;
+-- 
+2.11.0
+
