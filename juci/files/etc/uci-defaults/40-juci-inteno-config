@@ -1106,6 +1106,17 @@ config menu
 EOF
 }
 
+grep -qw "option page 'wireless-band-steering-status'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'status/wifi/bandsteering'
+	option page 'wireless-band-steering-status'
+	list acls 'juci-wireless'
+	list require 'ubus:juci.wireless'
+
+EOF
+}
+
 grep -qw "option page 'page-broadcom-dsl-status'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config menu
