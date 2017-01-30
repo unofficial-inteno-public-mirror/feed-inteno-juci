@@ -1108,7 +1108,7 @@ cat >> /etc/config/juci << EOF
 config menu
 	option path 'status/wifi/bandsteering'
 	option page 'wireless-band-steering-status'
-	list acls 'juci-wireless'
+	list acls 'juci-broadcom-wl'
 	list acls 'user-admin'
 	list require 'ubus:juci.wireless'
 
