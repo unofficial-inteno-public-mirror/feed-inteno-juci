@@ -34,6 +34,15 @@ themexst="$(opkg list ${curtheme:-NOTHEME})"
 	uci -q set juci.juci.theme="$theme"
 }
 
+routermodel="$(db get hw.board.iopVersion | cut -d'-' -f1)"
+case "$routermodel" in
+	EX400)
+		defmode="$(uci -c /rom/etc/config/ -q get netmode.setup.curmode)"
+		curmode="$(uci -q get netmode.setup.curmode)"
+		[ "$curmode" == "$defmode" ] && uci -q set juci.juci.homepage="netmode-wizard"
+	;;
+esac
+
 #wikiver="$(db get hw.board.iopVersion | awk -F'[_,-]' '{print$3}' | tr -d 'A-Z' | awk -F'.' '{print$1$2}')"
 wikiver="v310"
 
@@ -125,6 +134,16 @@ config juci_event 'juci_event'
 	list filter system.kernel
 	list filter system.ntp
 	list filter iptv.mcpd
+
+EOF
+}
+
+grep -qw "option page 'netmode-wizard'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'netmode-wizard'
+	option page 'netmode-wizard'
+	option hidden '1'
 
 EOF
 }
@@ -1101,7 +1120,7 @@ config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
 	list acls 'juci-wireless'
-	list require 'ubus:juci.wireless'
+	list require 'ubus:router.wireless'
 
 EOF
 }
