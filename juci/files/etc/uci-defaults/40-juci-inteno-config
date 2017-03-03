@@ -44,7 +44,7 @@ case "$routermodel" in
 esac
 
 #wikiver="$(db get hw.board.iopVersion | awk -F'[_,-]' '{print$3}' | tr -d 'A-Z' | awk -F'.' '{print$1$2}')"
-wikiver="v310"
+wikiver="v311"
 
 uci -q get juci.wiki || {
 	uci -q set juci.wiki=wiki
