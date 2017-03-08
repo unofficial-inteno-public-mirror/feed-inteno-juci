@@ -300,14 +300,12 @@ config menu
 	option path 'internet/services/upnp'
 	option page 'upnpd-settings'
 	list acls 'juci-upnp'
-	list acls 'user-support'
 	list require 'file:/etc/config/upnpd'
 
 config menu
 	option path 'internet/services/ddns'
 	option page 'internet-services-ddns'
 	list acls 'juci-ddns'
-	list acls 'user-support'
 	list require 'file:/etc/config/ddns'
 
 config menu
