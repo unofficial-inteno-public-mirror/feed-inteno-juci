@@ -517,6 +517,16 @@ config menu
 	list acls 'user-support'
 	list require 'file:/etc/config/multiwan'
 
+
+grep -qw "option page 'internet-mwan3'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'internet/mwan3'
+	option page 'internet-mwan3'
+	list acls 'juci-mwan3'
+	list acls 'user-support'
+	list require 'file:/etc/config/mwan3'
+
 EOF
 }
 

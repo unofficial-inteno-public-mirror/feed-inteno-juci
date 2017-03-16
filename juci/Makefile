@@ -5,7 +5,7 @@ PKG_NAME:=juci
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://public.inteno.se:/juci
-PKG_SOURCE_VERSION:=70a103c4fa21da8074f1a3b0d2096b1ed1f61fbd
+PKG_SOURCE_VERSION:=f274443ba5874f385b53edcade298ff8e32f311f
 PKG_VERSION:=2017-03-13
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
@@ -120,6 +120,7 @@ $(eval $(call RegisterAddon,Plugins,juci-inteno-voice-client, Inteno Asterisk Vo
 $(eval $(call RegisterAddon,Plugins,juci-minidlna, MiniDLNA Configuration))
 $(eval $(call RegisterAddon,Plugins,juci-mod-status, Deprecated JUCI Status Reporting Module))
 $(eval $(call RegisterAddon,Plugins,juci-mod-system, JUCI System Administration Module))
+$(eval $(call RegisterAddon,Plugins,juci-mwan3, Package for configuring mwan3 package))
 $(eval $(call RegisterAddon,Plugins,juci-natalie-dect, Natalie DECT interface))
 $(eval $(call RegisterAddon,Plugins,juci-netmode, Inteno NetMode default reset functionality))
 $(eval $(call RegisterAddon,Plugins,juci-network-netifd, OpenWRT netifd network configuration module))

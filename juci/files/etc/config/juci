@@ -280,6 +280,13 @@ config menu
 	list require 'file:/etc/config/multiwan'
 
 config menu
+	option path 'internet/mwan3'
+	option page 'internet-mwan3'
+	list acls 'juci-mwan3'
+	list acls 'user-support'
+	list require 'file:/etc/config/mwan3'
+
+config menu
 	option path 'internet/services'
 	option page 'internet-services'
 	list acls 'juci-network-netifd'
