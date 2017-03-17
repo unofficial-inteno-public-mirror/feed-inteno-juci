@@ -679,6 +679,12 @@ config menu
 	list require 'ubus:juci.speedtest'
 
 config menu
+	option path 'status/realtime-graphs'
+	option page 'status-realtime-graphs'
+	list acls 'juci-realtime-graphs'
+	list require 'ubus:router.graph'
+
+config menu
 	option path 'status/phone'
 	option page 'status-phone'
 	list acls 'juci-inteno-voice-client'

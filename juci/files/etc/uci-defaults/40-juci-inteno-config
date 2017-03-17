@@ -1226,6 +1226,17 @@ config menu
 EOF
 }
 
+grep -qw "option page 'status-realtime-graphs'" /etc/config/juci || {
+cat >> /etc/config/juci << EOF
+config menu
+	option path 'status/realtime-graphs'
+	option page 'status-realtime-graphs'
+	list acls 'juci-realtime-graphs'
+	list require 'ubus:router.graph'
+
+EOF
+}
+
 grep -qw "option page 'status-phone'" /etc/config/juci || {
 cat >> /etc/config/juci << EOF
 config menu
