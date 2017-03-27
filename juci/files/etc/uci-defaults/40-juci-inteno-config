@@ -1221,7 +1221,7 @@ config menu
 	option path 'status/diagnostics/speedtest'
 	option page 'status-diagnostics-speedtest'
 	list acls 'juci-diagnostics'
-	list require 'ubus:juci.speedtest'
+	list require 'ubus:juci.diagnostics'
 
 EOF
 }
