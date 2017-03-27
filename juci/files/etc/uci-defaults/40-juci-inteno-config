@@ -13,6 +13,7 @@ sed -i "s/ubus:\/juci\/upnpd/ubus:juci\.upnpd/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/wireless/ubus:juci\.wireless/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/diagnostics/ubus:juci\.diagnostics/g" /etc/config/juci
 sed -i "s/ubus:\/juci\/speedtest/ubus:juci\.speedtest/g" /etc/config/juci
+sed -i "s/ubus:\/juci\.speedtest/ubus:juci\.diagnostics/g" /etc/config/juci
 
 # convert from old style router ubus objects to new style router ubus objects
 sed -i "s/ubus:router->info/ubus:router.system->info/g" /etc/config/juci
