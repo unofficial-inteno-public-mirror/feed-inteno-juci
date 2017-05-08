@@ -622,6 +622,12 @@ config menu
 	list require 'ubus:router.wireless->stas'
 
 config menu
+	option path 'status/wifi/bs-data'
+	option page 'wireless-status-bs-data'
+	list acls 'juci-wireless'
+	list require 'ubus:router.wireless->bs_data'
+
+config menu
 	option path 'status/wifi/scan'
 	option page 'wireless-status-scan'
 	list acls 'juci-wireless'
