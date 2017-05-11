@@ -1156,7 +1156,7 @@ config menu
 	option page 'wireless-band-steering-status'
 	list acls 'juci-wireless'
 	list acls 'user-admin'
-	list require 'ubus:juci.wireless'
+	list require 'ubus:router.wireless->bsd_sta_info'
 
 EOF
 }
