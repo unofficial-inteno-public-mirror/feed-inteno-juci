@@ -377,7 +377,7 @@ config menu
         option path 'wifi/band_steering'
         option page 'wireless-band-steering'
         list acls 'juci-wireless'
-        list require 'file:/etc/config/wireless'
+        list require 'file:/usr/sbin/bsd'
 
 config menu
 	option path 'wifi/wps'
